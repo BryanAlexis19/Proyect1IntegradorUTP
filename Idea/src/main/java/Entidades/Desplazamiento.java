@@ -6,10 +6,10 @@ public class Desplazamiento {
     private double PF;
     private int expo1;
     private int expo2;
-    int expo3;
+    private int expo3;
     private double x1;
     private double x2;
-    double x3;
+    private double x3;
     private double n1;
     private double n2;
     private double n3;
@@ -39,6 +39,23 @@ public class Desplazamiento {
     public double des(){
         return des=PF-PI;
     }
+
+    public int getExpo3() {
+        return expo3;
+    }
+
+    public void setExpo3(int expo3) {
+        this.expo3 = expo3;
+    }
+
+    public double getX3() {
+        return x3;
+    }
+
+    public void setX3(double x3) {
+        this.x3 = x3;
+    }
+
     public double getPF() {
         return PF;
     }
@@ -63,14 +80,6 @@ public class Desplazamiento {
         this.expo2 = expo2;
     }
 
-    public int getExpo3() {
-        return expo3;
-    }
-
-    public void setExpo3(int expo3) {
-        this.expo3 = expo3;
-    }
-
     public double getX1() {
         return x1;
     }
@@ -85,14 +94,6 @@ public class Desplazamiento {
 
     public void setX2(double x2) {
         this.x2 = x2;
-    }
-
-    public double getX3() {
-        return x3;
-    }
-
-    public void setX3(double x3) {
-        this.x3 = x3;
     }
 
     public double getN1() {
@@ -150,5 +151,5 @@ public class Desplazamiento {
     public void setTI(double TI) {
         this.TI = TI;
     }
-
+   
 }
