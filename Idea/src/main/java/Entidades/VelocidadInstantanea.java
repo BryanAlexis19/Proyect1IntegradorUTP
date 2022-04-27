@@ -115,5 +115,4 @@ public class VelocidadInstantanea {
     public void setT(double T) {
         this.T = T;
     }
-
 }
