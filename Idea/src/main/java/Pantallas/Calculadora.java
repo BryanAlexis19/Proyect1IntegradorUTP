@@ -1,6 +1,7 @@
 
 package Pantallas;
 import Entidades.*;
+import javax.swing.JFrame;
 public class Calculadora extends javax.swing.JFrame {
     Formula obj;
     int Tipo = 0;
@@ -365,9 +366,19 @@ public class Calculadora extends javax.swing.JFrame {
     private void BTNCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalcularActionPerformed
 
             if(Tipo==1){
-                txtResD.setText("1");
-                txtResV.setText("");
-                txtResA.setText("");
+                //txtResD.setText("1");
+                //txtResV.setText("");
+                //txtResA.setText("");
+                int n1; int n2; int n3; int e1; int e2; int e3;
+                n1 = Integer.parseInt(txtN1.getText());
+                n2 = Integer.parseInt(txtN2.getText());
+                n3 = Integer.parseInt(txtN3.getText());
+                e1 = Integer.parseInt(txtE1.getText());
+                e2 = Integer.parseInt(txtE2.getText());
+                e3 = Integer.parseInt(txtE3.getText());
+                
+                String frase = obj.Derivar1(n1, n2, n3, e1, e2, e3);
+                txtResD.setText(frase);
             }
             else if(Tipo==2){
                 txtResV.setText("2");
@@ -394,7 +405,7 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_RBAceleracionActionPerformed
 
     private void BTSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTSalirActionPerformed
-        
+       
     }//GEN-LAST:event_BTSalirActionPerformed
     
     /**
