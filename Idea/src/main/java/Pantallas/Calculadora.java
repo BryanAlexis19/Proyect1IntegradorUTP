@@ -13,7 +13,6 @@ public class Calculadora extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -49,21 +48,9 @@ public class Calculadora extends javax.swing.JFrame {
         txtResultadoD = new javax.swing.JTextField();
         txtResultadoA = new javax.swing.JTextField();
         txtResultadoV = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 926, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1038, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Graficas", jPanel3);
 
         jLabel1.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jLabel1.setText("Calculadora de Desplazamiento, velocidad y aceleracion");
@@ -342,6 +329,19 @@ public class Calculadora extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Calculadora", jPanel1);
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 926, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1038, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Graficas", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -370,7 +370,7 @@ public class Calculadora extends javax.swing.JFrame {
             else if(Tipo==2){
                 
             }else{
-                ;
+                
             }
             buttonGroup1.clearSelection();
     }//GEN-LAST:event_BTNCalcularActionPerformed
