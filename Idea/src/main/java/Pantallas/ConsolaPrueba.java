@@ -17,7 +17,8 @@ public class ConsolaPrueba {
         
         VelocidadInstantaneaPrueba velprueba = new VelocidadInstantaneaPrueba(num1, x1, expon1);
         velprueba.DerivarDesplazamiento();
-        
+        VelocidadInstantaneaPrueba velprueba2 = new VelocidadInstantaneaPrueba(num1, x1, expon1);
+        velprueba2.IntegralDesplazamiento();
         
         
     }

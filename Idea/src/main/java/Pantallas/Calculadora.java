@@ -364,12 +364,11 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalcularActionPerformed
-
+    int n1; int n2; int n3; int e1; int e2; int e3;
             if(Tipo==1){
                 //txtResD.setText("1");
                 //txtResV.setText("");
                 //txtResA.setText("");
-                int n1; int n2; int n3; int e1; int e2; int e3;
                 n1 = Integer.parseInt(txtN1.getText());
                 n2 = Integer.parseInt(txtN2.getText());
                 n3 = Integer.parseInt(txtN3.getText());

@@ -56,4 +56,21 @@ public class VelocidadInstantaneaPrueba {
         String phrase1 = (String.valueOf(num1) + "X^" + String.valueOf(expo1));
         System.out.println(phrase1);
     }
+        public void IntegralDesplazamiento(){
+        //gn1 , gexpo1 y gx1 son los parametros que ingresan desde afuera
+        //Prueba con un solo termino
+        //Si no se especific la variable y el exponente, se suponen como 1
+        if(expo1 == 0){
+            expo1 = 1;
+        }
+        
+        if(varx1 == 0){
+            varx1 = 1;
+        }
+        
+        num1 = num1/ expo1;
+        expo1 = expo1 + 1;
+        String phrase1 = (String.valueOf(num1) + "X^" + String.valueOf(expo1));
+        System.out.println(phrase1);
+    }
 }
