@@ -1,12 +1,18 @@
 
 package Pantallas;
+import Entidades.Formula;
 
 public class Calculadora extends javax.swing.JFrame {
+    //Instanciar clases
+    Formula formulita = new Formula(Tipo = 0);
+    
+    
     int Tipo;
     public Calculadora() {
-        initComponents();
+        initComponents();        
     }
-
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -363,9 +369,20 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalcularActionPerformed
+        
 
-            if(Tipo==1){
+            //declarar las variables locales
+            int n1; int n2; int n3; int e1; int e2; int e3;
+            if(RBDesplazamiento.isSelected()){
+                n1 = Integer.parseInt(txtN1.getText());
+                n2 = Integer.parseInt(txtN2.getText());
+                n3 = Integer.parseInt(txtN3.getText());
+                e1 = Integer.parseInt(txtE1.getText());
+                e2 = Integer.parseInt(txtE2.getText());
+                e3 = Integer.parseInt(txtE3.getText());
                 
+                String frase = formulita.Derivar1(n1, n2, n3, e1, e2, e3);
+                txtResD.setText(frase);
             }
             else if(Tipo==2){
                 
