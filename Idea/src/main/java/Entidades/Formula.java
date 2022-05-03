@@ -1,7 +1,11 @@
 
 package Entidades;
 
+import Pantallas.Calculadora;
+
 public class Formula {
+    
+    Calculadora pantalla = new Calculadora();
     private int Tipo;
     
 
@@ -12,19 +16,29 @@ public class Formula {
         String vec[]={"","DD","DI","II"};
         return vec[Tipo];
     }
-    public void Derivar1(int num1, int expo1){
+    public String Derivar1(int num1, int num2, int num3,  int expo1, int expo2, int expo3 ){
         //gn1 , gexpo1 y gx1 son los parametros que ingresan desde afuera
         //Prueba con un solo termino
         //Si no se especific la variable y el exponente, se suponen como 1
         if(expo1 == 0){
             expo1 = 1;
         }
+        if(expo2 == 0){
+            expo2 = 1;
+        }
+        if(expo3 == 0){
+            expo3 = 1;
+        }
         
+                
         num1 = num1 * expo1;
         expo1 = expo1 - 1;
         
+        
         String phrase1 = (String.valueOf(num1) + "X^" + String.valueOf(expo1));
         System.out.println(phrase1);
+        return phrase1;
+        
     }
     public void Derivar2(int num2, int expo2){
         //gn1 , gexpo1 y gx1 son los parametros que ingresan desde afuera
