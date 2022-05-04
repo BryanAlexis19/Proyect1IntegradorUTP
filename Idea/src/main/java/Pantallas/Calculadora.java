@@ -468,14 +468,20 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void RBDesplazamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBDesplazamientoActionPerformed
         Tipo=1;
+        txtN1.setVisible(true);
+        jLabel4.setVisible(true);
     }//GEN-LAST:event_RBDesplazamientoActionPerformed
 
     private void RBVelocidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBVelocidadActionPerformed
         Tipo=2;
+        txtN1.setVisible(false);
+        jLabel4.setVisible(false);
     }//GEN-LAST:event_RBVelocidadActionPerformed
 
     private void RBAceleracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBAceleracionActionPerformed
         Tipo=3;
+        txtN1.setVisible(false);
+        jLabel4.setVisible(false);
     }//GEN-LAST:event_RBAceleracionActionPerformed
 
     private void BTSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTSalirActionPerformed
