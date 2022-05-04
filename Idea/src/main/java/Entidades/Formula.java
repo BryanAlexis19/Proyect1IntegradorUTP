@@ -27,11 +27,13 @@ public class Formula {
         }
         */
                 
-        num1 = num1 * expo1;
-        expo1 = expo1 - 1;
+        num2 = num2 * expo2;
+        expo2 = expo2 - 1;
+        num3 = num3 * expo3;
+        expo3 = expo3 - 1;
         
         
-        String phrase1 = (String.valueOf(num1) + "X^" + String.valueOf(expo1));
+        String phrase1 = (String.valueOf(num1)+" + "+String.valueOf(num2) + "X^" + String.valueOf(expo2)+" + "+String.valueOf(num3) + "X^" + String.valueOf(expo3));
         System.out.println(phrase1);
         return phrase1;
     }

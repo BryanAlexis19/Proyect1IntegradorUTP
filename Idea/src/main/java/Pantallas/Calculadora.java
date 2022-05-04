@@ -8,6 +8,8 @@ public class Calculadora extends javax.swing.JFrame {
     public Calculadora() {
         this.obj = new Formula(Tipo);
         initComponents();
+        txtE1.setVisible(false);
+        txtX1.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -126,6 +128,7 @@ public class Calculadora extends javax.swing.JFrame {
         txtX1.setEnabled(false);
 
         txtE1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        txtE1.setText("0");
         txtE1.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
@@ -366,9 +369,14 @@ public class Calculadora extends javax.swing.JFrame {
     private void BTNCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalcularActionPerformed
     int n1; int n2; int n3; int e1; int e2; int e3;
             if(Tipo==1){
-                //txtResD.setText("1");
-                //txtResV.setText("");
-                //txtResA.setText("");
+                txtResD.setText("1");
+                txtResV.setText("");
+                txtResA.setText("");
+            }
+            else if(Tipo==2){
+                /*txtResV.setText("2");
+                txtResD.setText("");
+                txtResA.setText("");*/
                 n1 = Integer.parseInt(txtN1.getText());
                 n2 = Integer.parseInt(txtN2.getText());
                 n3 = Integer.parseInt(txtN3.getText());
@@ -378,11 +386,6 @@ public class Calculadora extends javax.swing.JFrame {
                 
                 String frase = obj.Derivar1(n1, n2, n3, e1, e2, e3);
                 txtResD.setText(frase);
-            }
-            else if(Tipo==2){
-                txtResV.setText("2");
-                txtResD.setText("");
-                txtResA.setText("");
             }else{
                 txtResA.setText("3");
                 txtResD.setText("");
