@@ -372,6 +372,17 @@ public class Calculadora extends javax.swing.JFrame {
                 txtResD.setText("1");
                 txtResV.setText("");
                 txtResA.setText("");
+                n1 = Integer.parseInt(txtN1.getText());
+                n2 = Integer.parseInt(txtN2.getText());
+                n3 = Integer.parseInt(txtN3.getText());
+                e1 = Integer.parseInt(txtE1.getText());
+                e2 = Integer.parseInt(txtE2.getText());
+                e3 = Integer.parseInt(txtE3.getText());
+                txtResD.setText(n1+" + "+n2+"X^"+e2+" + "+n3+"X^"+e3);
+                String frase = obj.Derivar1(n1, n2, n3, e1, e2, e3);
+                txtResV.setText(frase);
+                String frase1 = obj.Derivar2(n1, n2, n3, e1, e2, e3);
+                txtResA.setText(frase1);
             }
             else if(Tipo==2){
                 /*txtResV.setText("2");
