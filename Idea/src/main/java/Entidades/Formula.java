@@ -24,7 +24,6 @@ public class Formula {
         
         
         String phrase1 = (String.valueOf(num1)+" + "+String.valueOf(num2) + "X^" + String.valueOf(expo2)+" + "+String.valueOf(num3) + "X^" + String.valueOf(expo3));
-        System.out.println(phrase1);
         return phrase1;
     }
     public String Derivar2(int num1, int num2, int num3,  int expo1, int expo2, int expo3){
