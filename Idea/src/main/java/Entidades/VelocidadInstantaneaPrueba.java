@@ -67,9 +67,9 @@ public class VelocidadInstantaneaPrueba {
         if(varx1 == 0){
             varx1 = 1;
         }
-        
-        num1 = num1/ expo1;
         expo1 = expo1 + 1;
+        num1 = num1/ expo1;
+        
         String phrase1 = (String.valueOf(num1) + "X^" + String.valueOf(expo1));
         System.out.println(phrase1);
     }
