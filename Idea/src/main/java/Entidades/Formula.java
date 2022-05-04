@@ -30,17 +30,24 @@ public class Formula {
     public String Derivar2(int num1, int num2, int num3,  int expo1, int expo2, int expo3){
         int n=0;
         int n1=0;
+        String phrase1 = null;
 //gn1 , gexpo1 y gx1 son los parametros que ingresan desde afuera
         //Prueba con un solo termino
         //Si no se especific la variable y el exponente, se suponen como 1
         n=expo2-1;
-        n1=expo2-1;
+        n1=expo3-1;
         num2 = ((num2 * n )*expo2);
         expo2 = expo2 - 2;
         num3 = ((num3 * n1)*expo3);
         expo3 = expo3 - 2;
-        String phrase1 = (String.valueOf(num2) + "X^" + String.valueOf(expo2)+" + "+String.valueOf(num3) + "X^" + String.valueOf(expo3));
-        System.out.println(phrase1);
+        
+        if(expo2>0 && expo3>0){
+            phrase1 = (String.valueOf(num2) + "X^" + String.valueOf(expo2)+" + "+String.valueOf(num3) + "X^" + String.valueOf(expo3));
+        }else if(expo2==0){
+            phrase1 = (String.valueOf(num2) +" + "+String.valueOf(num3) + "X^" + String.valueOf(expo3));
+        }else if(expo3==0){
+            phrase1 = (String.valueOf(num2) + "X^" + String.valueOf(expo2)+" + "+String.valueOf(num3));
+        }
         return phrase1;
     }
     public void Derivar3(int num3, int expo3){

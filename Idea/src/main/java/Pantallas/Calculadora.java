@@ -137,6 +137,7 @@ public class Calculadora extends javax.swing.JFrame {
         txtN2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
         txtX2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        txtX2.setText("X");
 
         txtE2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
@@ -146,6 +147,7 @@ public class Calculadora extends javax.swing.JFrame {
         txtN3.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
         txtX3.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        txtX3.setText("X");
 
         txtE3.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
