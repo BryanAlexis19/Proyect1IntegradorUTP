@@ -137,6 +137,7 @@ public class Calculadora extends javax.swing.JFrame {
         txtN2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
         txtX2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        txtX2.setText("X");
 
         txtE2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
@@ -146,6 +147,7 @@ public class Calculadora extends javax.swing.JFrame {
         txtN3.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
         txtX3.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        txtX3.setText("X");
 
         txtE3.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
@@ -378,11 +380,27 @@ public class Calculadora extends javax.swing.JFrame {
                 e1 = Integer.parseInt(txtE1.getText());
                 e2 = Integer.parseInt(txtE2.getText());
                 e3 = Integer.parseInt(txtE3.getText());
-                txtResD.setText(n1+" + "+n2+"X^"+e2+" + "+n3+"X^"+e3);
+                txtResD.setText("Formula de Principal");
+                txtResD.append("\n"+n1+" + "+n2+"X^"+e2+" + "+n3+"X^"+e3);
+                txtResV.setText("Formula de Principal");
+                txtResV.append("\n"+n1+" + "+n2+"X^"+e2+" + "+n3+"X^"+e3);
+                txtResV.append("\nConvirtiendo a la primera derivada");
+                txtResV.append("\n"+n1+"*"+0+" + "+n2+" * "+e2+"X^"+e2+"-1"+" + "+n3+" * "+e3+"X^"+e3+"-1");
+                 txtResV.append("\nPrimera derivada : Formula velocidad");
                 String frase = obj.Derivar1(n1, n2, n3, e1, e2, e3);
-                txtResV.setText(frase);
+                txtResV.append("\n"+frase);
+                txtResA.setText("Formula de Principal");
+                txtResA.append("\n"+n1+" + "+n2+"X^"+e2+" + "+n3+"X^"+e3);
+                txtResA.append("\nConvirtiendo a la primera derivada");
+                txtResA.append("\n"+n1+"*"+0+" + "+n2+" * "+e2+"X^"+e2+"-1"+" + "+n3+" * "+e3+"X^"+e3+"-1");
+                txtResA.append("\nPrimera derivada : Formula velocidad");
+                String frasea = obj.Derivar1(n1, n2, n3, e1, e2, e3);
+                txtResA.append("\n"+frasea);
+                txtResA.append("\nConvirtiendo a la segunda derivada");
+                txtResA.append("\n"+n2+" * "+e2+"X^"+e2+"-2"+" + "+n3+" * "+e3+"X^"+e3+"-1");
+                txtResA.append("\nSegunda derivada : Formula aceleracion");
                 String frase1 = obj.Derivar2(n1, n2, n3, e1, e2, e3);
-                txtResA.setText(frase1);
+                txtResA.append("\n"+frase1);
             }
             else if(Tipo==2){
                 /*txtResV.setText("2");
