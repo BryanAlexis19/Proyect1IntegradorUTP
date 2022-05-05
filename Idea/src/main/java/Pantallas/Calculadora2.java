@@ -1,16 +1,34 @@
 
 package Pantallas;
-import Entidades.*;
+import Entidades.FormulaGeneral;
+import java.util.ArrayList;
 import javax.swing.JFrame;
-public class Calculadora extends javax.swing.JFrame {
-    Formula obj;
+public class Calculadora2 extends javax.swing.JFrame {
+    
     int Tipo = 0;
-    public Calculadora() {
-       this.obj = new Formula();
+    
+    static double n1;
+    static double n2;
+    static double n3;
+    static int e1;
+    static int e2;
+    static int e3;
+       
+    static ArrayList<FormulaGeneral> listaFormula1 = new ArrayList<>();
+    FormulaGeneral control;
+    String formuInicial;
+    static String formulaDerivada;
+    String formulaDerivada2;
+    
+    public Calculadora2() {       
         initComponents();
         txtE1.setVisible(false);
         txtX1.setVisible(false);
-        
+        txtResD.setEditable(false);
+        txtResV.setEditable(false);
+        txtResA.setEditable(false);
+        txtX2.setEditable(false);
+        txtX3.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -368,105 +386,69 @@ public class Calculadora extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void getVars() {
+        n1 = Integer.parseInt(txtN1.getText());
+        n2 = Integer.parseInt(txtN2.getText());
+        n3 = Integer.parseInt(txtN3.getText());
+        e1 = Integer.parseInt(txtE1.getText());
+        e2 = Integer.parseInt(txtE2.getText());
+        e3 = Integer.parseInt(txtE3.getText());
+    }
 
+    public static void setNewVars() {
+        for (FormulaGeneral fg: listaFormula1) {
+            n1 = fg.getN1();
+            n2 = fg.getN2();
+            n3 = fg.getN3();
+            e1 = fg.getExpo1();
+            e2 = fg.getExpo2();
+            e3 = fg.getExpo3();
+        }
+    }
+    
+    public void initFormula() {
+        getVars();
+        control = new FormulaGeneral(n1, n2, n3, e1, e2, e3);
+        formuInicial = control.ImprimirFormula();
+    }
+    
+
+    public static void Derivar1(double nu1, double nu2, double nu3, int ex1, int ex2, int ex3) {
+
+        listaFormula1.add(new FormulaGeneral(nu1, nu2, nu3, ex1, ex2, ex3));
+        for (FormulaGeneral fg : listaFormula1) {
+            fg.Derivar();
+            formulaDerivada = fg.ImprimirFormula();
+            //System.out.println(fg.ImprimirFormula());
+        }
+        setNewVars();
+        listaFormula1.clear();
+
+        //FormulaGeneral nuevaFormula[] = new FormulaGeneral[listaFormula1.size()];
+        //listaFormula1.toArray(nuevaFormula);
+    }
     private void BTNCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalcularActionPerformed
-    int n1 = 0;int n2; int n3; int e1; int e2; int e3;
-    int a=0; int b=0;
-            if(Tipo==1){
-                /*txtResD.setText("1");
-                txtResV.setText("");
-                txtResA.setText("");*/
-                n1 = Integer.parseInt(txtN1.getText());
-                n2 = Integer.parseInt(txtN2.getText());
-                n3 = Integer.parseInt(txtN3.getText());
-                e1 = Integer.parseInt(txtE1.getText());
-                e2 = Integer.parseInt(txtE2.getText());
-                e3 = Integer.parseInt(txtE3.getText());
-                a=e2-1;
-                b=e3-1;
-                txtResD.setText("Formula de Principal");
-                txtResD.append("\n"+n1+" + "+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                
-                txtResV.setText("Formula de Principal");
-                txtResV.append("\n"+n1+" + "+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                txtResV.append("\nConvirtiendo a la primera derivada");
-                txtResV.append("\n"+n1+"*"+0+" + "+n2+" * "+e2+"X^"+e2+"-1"+" + "+n3+" * "+e3+"X^"+e3+"-1");
-                 txtResV.append("\nPrimera derivada : Formula velocidad");
-                String frase = obj.Derivar1(n1, n2, n3, e1, e2, e3);
-                txtResV.append("\n"+frase);
-                
-                txtResA.setText("Formula de Principal");
-                txtResA.append("\n"+n1+" + "+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                txtResA.append("\nConvirtiendo a la primera derivada");
-                txtResA.append("\n"+n1+"*"+0+" + "+n2+" * "+e2+"X^"+e2+"-1"+" + "+n3+" * "+e3+"X^"+e3+"-1");
-                txtResA.append("\nPrimera derivada : Formula velocidad");
-                String frasea = obj.Derivar1(n1, n2, n3, e1, e2, e3);
-                txtResA.append("\n"+frasea);
-                txtResA.append("\nConvirtiendo a la segunda derivada");
-                txtResA.append("\n"+n2+" * "+e2+" * "+a+"X^"+e2+"-2"+" + "+n3+" * "+e3+" * "+b+"X^"+e3+"-2");
-                txtResA.append("\nSegunda derivada : Formula aceleracion");
-                String frase1 = obj.Derivar2(n1, n2, n3, e1, e2, e3);
-                txtResA.append("\n"+frase1);
-            }
-            else if(Tipo==2){
-                /*txtResV.setText("2");
-                txtResD.setText("");
-                txtResA.setText("");*/
-                n2 = Integer.parseInt(txtN2.getText());
-                n3 = Integer.parseInt(txtN3.getText());
-                e1 = Integer.parseInt(txtE1.getText());
-                e2 = Integer.parseInt(txtE2.getText());
-                e3 = Integer.parseInt(txtE3.getText());
-                txtResV.setText("Formula de Principal");
-                txtResV.append("\n"+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                txtResD.setText("Formula de Principal");
-                txtResD.append("\n"+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                txtResD.append("\nConvirtiendo a la primera integral");
-                txtResD.append("\n"+"("+n2+" / "+e2+"+1"+")"+"X^"+e2+"+1"+" + "+"("+n3+" / "+e3+"+1"+")"+"X^"+e3+"+1"+" + C");
-                txtResD.append("\nPrimera Integral : Formula Desplazamiento");
-                String frase3 = obj.Integral1(n2, n3, e1, e2, e3);
-                txtResD.append("\n"+frase3);
-                txtResA.setText("Formula de Principal");
-                txtResA.append("\n"+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                txtResA.append("\nConvirtiendo a derivada");
-                txtResA.append("\n"+n2+" * "+e2+"X^"+e2+"-1"+" + "+n3+" * "+e3+"X^"+e3+"-1");
-                txtResA.append("\n Derivada : Formula Aceleracion");
-                String frase4 = obj.Derivar1(n1,n2, n3, e1, e2, e3);
-                txtResA.append("\n"+frase4);
-            }else if(Tipo==3){
-                /*txtResA.setText("3");
-                txtResD.setText("");
-                txtResV.setText("");*/
-                n2 = Integer.parseInt(txtN2.getText());
-                n3 = Integer.parseInt(txtN3.getText());
-                e1 = Integer.parseInt(txtE1.getText());
-                e2 = Integer.parseInt(txtE2.getText());
-                e3 = Integer.parseInt(txtE3.getText());
-                a=e2+2;
-                b=e3+2;
-                txtResA.setText("Formula de Principal");
-                txtResA.append("\n"+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                txtResV.setText("Formula de Principal");
-                txtResV.append("\n"+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                txtResV.append("\nConvirtiendo a la primera integral");
-                txtResV.append("\n"+"("+n2+" / "+e2+"+1"+")"+"X^"+e2+"+1"+" + "+"("+n3+" / "+e3+"+1"+")"+"X^"+e3+"+1"+" + C");
-                txtResV.append("\nPrimera Integral : Formula Velocidad");
-                String frase5 = obj.Integral1(n2, n3, e1, e2, e3);
-                txtResV.append("\n"+frase5);
-                txtResD.setText("Formula de Principal");
-                txtResD.append("\n"+n2+"X^"+e2+" + "+n3+"X^"+e3);
-                txtResD.append("\nConvirtiendo a la primera integral");
-                txtResD.append("\n"+"("+n2+" / "+e2+"+1"+")"+"X^"+e2+"+1"+" + "+"("+n3+" / "+e3+"+1"+")"+"X^"+e3+"+1"+" + C");
-                txtResD.append("\nPrimera Integral : Formula Velocidad");
-                String frase6 = obj.Integral1(n2, n3, e1, e2, e3);
-                txtResD.append("\n"+frase6);
-                txtResD.append("\nConvirtiendo a la segunda Integral");
-                txtResD.append("\n"+"("+n2+" / ("+e2+"+1 * "+a+")"+"X^"+e2+"+2"+" + "+"("+n3+" / ("+e3+"+1 * "+b+")"+"X^"+e3+"+2"+" + C");
-                txtResD.append("\nSegunda derivada : Formula aceleracion");
-                String frase7 = obj.Integral2(n2, n3, e1, e2, e3);
-                txtResD.append("\n"+frase7);
-            }
-            buttonGroup1.clearSelection();
+
+        switch (Tipo) {
+            case 1:              
+                getVars();
+                initFormula();
+                txtResD.setText("---------Formula Principal----------\n" + formuInicial);                               
+                Derivar1(n1, n2, n3, e1, e2, e3);
+                txtResV.setText("---------Formula Derivada 1 vez----------\n" + formulaDerivada);                 
+                setNewVars();
+                Derivar1(n1, n2, n3, e1, e2, e3);
+                txtResA.setText("---------Formula Derivada por 2da vez----------\n" + formulaDerivada);                
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+    
+    
     }//GEN-LAST:event_BTNCalcularActionPerformed
 
     private void RBDesplazamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBDesplazamientoActionPerformed
@@ -488,7 +470,7 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_RBAceleracionActionPerformed
 
     private void BTSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTSalirActionPerformed
-       
+       dispose();
     }//GEN-LAST:event_BTSalirActionPerformed
     
     /**
@@ -508,20 +490,21 @@ public class Calculadora extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Calculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculadora2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Calculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculadora2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Calculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculadora2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Calculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculadora2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Calculadora().setVisible(true);
+                new Calculadora2().setVisible(true);
             }
         });
     }

@@ -2,16 +2,16 @@
 package Entidades;
 
 public class Formula {
-    private int Tipo;
+    /*private int Tipo;*/
     
 
-    public Formula(int Tipo) {
-        this.Tipo = Tipo;
+    public Formula(/*int Tipo*/) {
+        /*this.Tipo = Tipo;*/
     }
-    public String tipo(){
+    /*public String tipo(){
         String vec[]={"","DD","DI","II"};
         return vec[Tipo];
-    }
+    }*/
     public String Derivar1(int num1, int num2, int num3,  int expo1, int expo2, int expo3){
         //gn1 , gexpo1 y gx1 son los parametros que ingresan desde afuera
         //Prueba con un solo termino
@@ -89,12 +89,12 @@ public class Formula {
         return phrase1;
     }
 
-    public int getTipo() {
+    /*public int getTipo() {
         return Tipo;
     }
 
     public void setTipo(int Tipo) {
         this.Tipo = Tipo;
-    }
+    }*/
     
 }
