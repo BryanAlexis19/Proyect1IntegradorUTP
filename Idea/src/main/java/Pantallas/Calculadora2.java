@@ -17,11 +17,9 @@ public class Calculadora2 extends javax.swing.JFrame {
     static ArrayList<FormulaGeneral> listaFormula1 = new ArrayList<>();
     FormulaGeneral control;
     String formuInicial;
-    String formuInicial1;
     static String formulaDerivada;
-    String formulaDerivada2;
     static String formulaIntegral;
-    String formulaIntegral2;
+
     
     public Calculadora2() {       
         initComponents();
@@ -409,14 +407,34 @@ public class Calculadora2 extends javax.swing.JFrame {
         }
     }
     
+    public void getVarsIntegral() {       
+        n2 = Integer.parseInt(txtN2.getText());
+        n3 = Integer.parseInt(txtN3.getText());   
+        e2 = Integer.parseInt(txtE2.getText());
+        e3 = Integer.parseInt(txtE3.getText());
+    }
+    
+    public static void setNewVarsIntegral() {
+        for (FormulaGeneral fg: listaFormula1) {           
+            n2 = fg.getN2();
+            n3 = fg.getN3();           
+            e2 = fg.getExpo2();
+            e3 = fg.getExpo3();
+        }
+    }
+    
     
     public void initFormula() {
         getVars();
         control = new FormulaGeneral(n1, n2, n3, e1, e2, e3);
         formuInicial = control.ImprimirFormula();
-        formuInicial1 = control.ImprimirFormula1();
     }
 
+    public void initFormulaIntegral() {
+        getVarsIntegral();
+        control = new FormulaGeneral(n2, n3, e2, e3);
+        formuInicial = control.ImprimirFormula1();
+    }
 
     public static void Derivar1(double nu1, double nu2, double nu3, int ex1, int ex2, int ex3) {
 
@@ -424,27 +442,22 @@ public class Calculadora2 extends javax.swing.JFrame {
         for (FormulaGeneral fg : listaFormula1) {
             fg.Derivar();
             formulaDerivada = fg.ImprimirFormula();
-            //System.out.println(fg.ImprimirFormula());
         }
         setNewVars();
         listaFormula1.clear();
 
-        //FormulaGeneral nuevaFormula[] = new FormulaGeneral[listaFormula1.size()];
-        //listaFormula1.toArray(nuevaFormula);
+
     }
     public static void Derivar2(double nu2, double nu3,int ex2, int ex3) {
 
-        listaFormula1.add(new FormulaGeneral( nu2, nu3, ex2, ex3));
+        listaFormula1.add(new FormulaGeneral(nu2, nu3, ex2, ex3));
         for (FormulaGeneral fg : listaFormula1) {
-            fg.Derivar();
+            fg.Derivar2();
             formulaDerivada = fg.ImprimirFormula1();
-            //System.out.println(fg.ImprimirFormula());
         }
-        setNewVars();
+        setNewVarsIntegral();
         listaFormula1.clear();
 
-        //FormulaGeneral nuevaFormula[] = new FormulaGeneral[listaFormula1.size()];
-        //listaFormula1.toArray(nuevaFormula);
     }
     public static void Integrar1(double nu2, double nu3,int ex2, int ex3) {
 
@@ -454,7 +467,7 @@ public class Calculadora2 extends javax.swing.JFrame {
             formulaIntegral = fg.ImprimirFormula1();
             //System.out.println(fg.ImprimirFormula());
         }
-        setNewVars();
+        setNewVarsIntegral();
         listaFormula1.clear();
 
         //FormulaGeneral nuevaFormula[] = new FormulaGeneral[listaFormula1.size()];
@@ -474,32 +487,31 @@ public class Calculadora2 extends javax.swing.JFrame {
                 txtResA.setText("---------Formula Derivada por 2da vez----------\n" + formulaDerivada);                
                 break;
             case 2:
-                getVars();
-                initFormula();
-                txtResV.setText("---------Formula Principal----------\n" + formuInicial1);                               
+                getVarsIntegral();
+                initFormulaIntegral();
+                txtResV.setText("---------Formula Principal----------\n" + formuInicial);                               
                 Integrar1(n2, n3, e2, e3);
                 txtResD.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral);                 
-                setNewVars();
+                setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
-                setNewVars();
+                setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
                 txtResA.setText("---------Formula Derivada por 1 vez----------\n" + formulaDerivada);    
                 break;
-            case 3:
-                //Segunda derivada Error null
-                getVars();
-                initFormula();
-                txtResA.setText("---------Formula Principal----------\n" + formuInicial1);                               
+            case 3:              
+                getVarsIntegral();
+                initFormulaIntegral();
+                txtResA.setText("---------Formula Principal----------\n" + formuInicial);                               
                 Integrar1(n2, n3, e2, e3);
-                txtResV.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral);                 
-                setNewVars();
+                txtResV.setText("---------Formula Integrada 1era vez----------\n" + formulaIntegral);                 
+                setNewVarsIntegral();
                 Integrar1(n2, n3, e2, e3);
-                txtResD.setText("---------Formula integral 2 vez----------\n" + formulaIntegral);    
+                txtResD.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral);    
                 break;    
             default:
                 break;
         }
-    
+        buttonGroup1.clearSelection();
     
     }//GEN-LAST:event_BTNCalcularActionPerformed
 
