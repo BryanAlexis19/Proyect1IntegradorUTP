@@ -119,6 +119,13 @@ public class FormulaGeneral {
         expo3 = expo3 - 1;
     }
     
+    public void Derivar2(){
+        n2 = n2 * expo2;
+        expo2 = expo2 - 1;
+        n3 = n3 * expo3;
+        expo3 = expo3 - 1;
+    }
+    
     public void Integral(){
         expo2 = expo2 + 1;
         n2 = n2 / expo2;
