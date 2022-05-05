@@ -17,8 +17,11 @@ public class Calculadora2 extends javax.swing.JFrame {
     static ArrayList<FormulaGeneral> listaFormula1 = new ArrayList<>();
     FormulaGeneral control;
     String formuInicial;
+    String formuInicial1;
     static String formulaDerivada;
     String formulaDerivada2;
+    static String formulaIntegral;
+    String formulaIntegral2;
     
     public Calculadora2() {       
         initComponents();
@@ -394,7 +397,7 @@ public class Calculadora2 extends javax.swing.JFrame {
         e2 = Integer.parseInt(txtE2.getText());
         e3 = Integer.parseInt(txtE3.getText());
     }
-
+    
     public static void setNewVars() {
         for (FormulaGeneral fg: listaFormula1) {
             n1 = fg.getN1();
@@ -406,12 +409,14 @@ public class Calculadora2 extends javax.swing.JFrame {
         }
     }
     
+    
     public void initFormula() {
         getVars();
         control = new FormulaGeneral(n1, n2, n3, e1, e2, e3);
         formuInicial = control.ImprimirFormula();
+        formuInicial1 = control.ImprimirFormula1();
     }
-    
+
 
     public static void Derivar1(double nu1, double nu2, double nu3, int ex1, int ex2, int ex3) {
 
@@ -419,6 +424,34 @@ public class Calculadora2 extends javax.swing.JFrame {
         for (FormulaGeneral fg : listaFormula1) {
             fg.Derivar();
             formulaDerivada = fg.ImprimirFormula();
+            //System.out.println(fg.ImprimirFormula());
+        }
+        setNewVars();
+        listaFormula1.clear();
+
+        //FormulaGeneral nuevaFormula[] = new FormulaGeneral[listaFormula1.size()];
+        //listaFormula1.toArray(nuevaFormula);
+    }
+    public static void Derivar2(double nu2, double nu3,int ex2, int ex3) {
+
+        listaFormula1.add(new FormulaGeneral( nu2, nu3, ex2, ex3));
+        for (FormulaGeneral fg : listaFormula1) {
+            fg.Derivar();
+            formulaDerivada = fg.ImprimirFormula1();
+            //System.out.println(fg.ImprimirFormula());
+        }
+        setNewVars();
+        listaFormula1.clear();
+
+        //FormulaGeneral nuevaFormula[] = new FormulaGeneral[listaFormula1.size()];
+        //listaFormula1.toArray(nuevaFormula);
+    }
+    public static void Integrar1(double nu2, double nu3,int ex2, int ex3) {
+
+        listaFormula1.add(new FormulaGeneral(nu2, nu3, ex2, ex3));
+        for (FormulaGeneral fg : listaFormula1) {
+            fg.Integral();
+            formulaIntegral = fg.ImprimirFormula1();
             //System.out.println(fg.ImprimirFormula());
         }
         setNewVars();
@@ -441,9 +474,28 @@ public class Calculadora2 extends javax.swing.JFrame {
                 txtResA.setText("---------Formula Derivada por 2da vez----------\n" + formulaDerivada);                
                 break;
             case 2:
+                getVars();
+                initFormula();
+                txtResV.setText("---------Formula Principal----------\n" + formuInicial1);                               
+                Integrar1(n2, n3, e2, e3);
+                txtResD.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral);                 
+                setNewVars();
+                Derivar2(n2, n3, e2, e3);
+                setNewVars();
+                Derivar2(n2, n3, e2, e3);
+                txtResA.setText("---------Formula Derivada por 1 vez----------\n" + formulaDerivada);    
                 break;
             case 3:
-                break;
+                //Segunda derivada Error null
+                getVars();
+                initFormula();
+                txtResA.setText("---------Formula Principal----------\n" + formuInicial1);                               
+                Integrar1(n2, n3, e2, e3);
+                txtResV.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral);                 
+                setNewVars();
+                Integrar1(n2, n3, e2, e3);
+                txtResD.setText("---------Formula integral 2 vez----------\n" + formulaDerivada);    
+                break;    
             default:
                 break;
         }

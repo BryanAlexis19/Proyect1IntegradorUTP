@@ -38,6 +38,13 @@ public class FormulaGeneral {
         this.expo2 = expo2;
         this.expo3 = expo3;
     }
+    //Constructor recargado sin variable de tiempo ni primeras varibles
+    public FormulaGeneral(double n2, double n3,int expo2, int expo3) {
+        this.n2 = n2;
+        this.n3 = n3;
+        this.expo2 = expo2;
+        this.expo3 = expo3;
+    }
 
     public double getN1() {
         return n1;
@@ -99,6 +106,10 @@ public class FormulaGeneral {
         return n1 + "X^" + expo1 + " + " + n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
     }
     
+    public String ImprimirFormula1() {
+        return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3 + " + " + "C";
+    }
+    
     public void Derivar(){
         n1 = n1 * expo1;
         expo1 = expo1 - 1;
@@ -108,8 +119,11 @@ public class FormulaGeneral {
         expo3 = expo3 - 1;
     }
     
-
-    
-    
+    public void Integral(){
+        expo2 = expo2 + 1;
+        n2 = n2 / expo2;
+        expo3 = expo3 + 1;
+        n3 = n3 / expo3;
+    }
     
 }
