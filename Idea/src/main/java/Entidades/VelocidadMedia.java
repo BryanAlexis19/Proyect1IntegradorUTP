@@ -1,25 +1,24 @@
 
 package Entidades;
 
-public class VelocidadMedia {
+public class VelocidadMedia extends FormulaGeneral{
     private double PF;
     private double PI;
     private double TF;
     private double TI;
-    private double Ves;
 
-    public VelocidadMedia(double PF, double PI, double TF, double TI, double Ves) {
+    public VelocidadMedia(double PF, double PI, double TF, double TI, double n2, double n3, int expo2, int expo3, int var) {
+        super(n2, n3, expo2, expo3, var);
         this.PF = PF;
         this.PI = PI;
         this.TF = TF;
         this.TI = TI;
-        this.Ves = Ves;
     }
     
-    public boolean Ves(){
-        return Ves==(PF-PI)/(TF-TI);
+    public double Ves(){
+        return (PF-PI)/(TF-TI);
     }
-    
+
     public double getPF() {
         return PF;
     }
@@ -50,14 +49,6 @@ public class VelocidadMedia {
 
     public void setTI(double TI) {
         this.TI = TI;
-    }
-
-    public double getVes() {
-        return Ves;
-    }
-
-    public void setVes(double Ves) {
-        this.Ves = Ves;
     }
     
 }
