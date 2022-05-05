@@ -494,7 +494,7 @@ public class Calculadora2 extends javax.swing.JFrame {
                 txtResV.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral);                 
                 setNewVars();
                 Integrar1(n2, n3, e2, e3);
-                txtResD.setText("---------Formula integral 2 vez----------\n" + formulaDerivada);    
+                txtResD.setText("---------Formula integral 2 vez----------\n" + formulaIntegral);    
                 break;    
             default:
                 break;
