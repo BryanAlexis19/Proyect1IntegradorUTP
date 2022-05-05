@@ -15,7 +15,6 @@ public class FormulaGeneral {
     private int var;
     //ArrayList
     
-    
     //Constructor vacio
     public FormulaGeneral (){        
     }
@@ -30,7 +29,7 @@ public class FormulaGeneral {
         this.var =var;
     }
     //Constructor recargado SIN VARIABLE DE TIEMPO
-    public FormulaGeneral(double n1, double n2, double n3, int expo1, int expo2, int expo3) {
+    public FormulaGeneral(/*parametro*/double n1, double n2, double n3, int expo1, int expo2, int expo3) {
         this.n1 = n1;
         this.n2 = n2;
         this.n3 = n3;
@@ -40,6 +39,13 @@ public class FormulaGeneral {
     }
     //Constructor recargado sin variable de tiempo ni primeras varibles
     public FormulaGeneral(double n2, double n3,int expo2, int expo3) {
+        this.n2 = n2;
+        this.n3 = n3;
+        this.expo2 = expo2;
+        this.expo3 = expo3;
+    }
+    //Constructor recargado con variable de tiempo ni primeras varibles
+    public FormulaGeneral(double n2, double n3,int expo2, int expo3, int var) {
         this.n2 = n2;
         this.n3 = n3;
         this.expo2 = expo2;
@@ -103,14 +109,36 @@ public class FormulaGeneral {
     }
     
     public String ImprimirFormula() {
-        return n1 + "X^" + expo1 + " + " + n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
+        if(n1==0 && expo2>0 && expo3>0 ){
+        return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
+        }else if(n2==0){
+        return n1 +" + " + n3 + "X^" + expo3;
+        }else if(n3==0){
+        return n1 +" + " + n2 + "X^" + expo2;
+        }else if(n2==0 && n1==0){
+        return n3 + "X^" + expo3;
+        }else if(n3==0 && n1==0){
+        return n2 + "X^" + expo2;
+        }else if(expo2==0){
+        return n2 +" + "+ n3 + "X^" + expo3;
+        }else if(expo3==0){
+        return n2  + "X^" + expo2 +" + "+ n3;
+        }else if(expo2==0 && expo3==0){
+        return n2 +" + "+ n3;
+        }else if(n2==0 && expo2==0){
+        return n3 + "X^" + expo3 ;
+        }else if(n3==0 && expo3==0){
+        return n2 + "X^" +expo2;
+        }else
+        return n1 +" + " + n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
     }
     
     public String ImprimirFormula1() {
-        return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3 + " + " + "C";
+        return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
     }
-    
-    public void Derivar(){
+    //metodo
+    public void Derivar(/*definicion o parametro*/){
+        //variable global
         n1 = n1 * expo1;
         expo1 = expo1 - 1;
         n2 = n2 * expo2;

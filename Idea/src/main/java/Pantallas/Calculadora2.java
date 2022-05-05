@@ -3,6 +3,7 @@ package Pantallas;
 import Entidades.FormulaGeneral;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 public class Calculadora2 extends javax.swing.JFrame {
     
     int Tipo = 0;
@@ -387,6 +388,9 @@ public class Calculadora2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    void msg(String texto){
+        JOptionPane.showMessageDialog(this, texto);
+    }
     public void getVars() {
         n1 = Integer.parseInt(txtN1.getText());
         n2 = Integer.parseInt(txtN2.getText());
@@ -425,8 +429,8 @@ public class Calculadora2 extends javax.swing.JFrame {
     
     
     public void initFormula() {
-        getVars();
-        control = new FormulaGeneral(n1, n2, n3, e1, e2, e3);
+        getVars();    /*constructor*/  
+/*objeto*/control = new FormulaGeneral(/*argumentos*/n1, n2, n3, e1, e2, e3); /*son los parametros requeridos para el metodo , los cuales se deben especificar*/
         formuInicial = control.ImprimirFormula();
     }
 
@@ -474,7 +478,18 @@ public class Calculadora2 extends javax.swing.JFrame {
         //listaFormula1.toArray(nuevaFormula);
     }
     private void BTNCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalcularActionPerformed
-
+        if(NN1()==0){
+            msg("Faltan datos");return;
+        }
+        if(EE1()==0){
+            msg("Faltan datos");return;
+        }
+        if(NN2()==0){
+            msg("Faltan datos");return;
+        }
+        if(EE2()==0){
+            msg("Faltan datos");return;
+        }
         switch (Tipo) {
             case 1:              
                 getVars();
@@ -489,9 +504,9 @@ public class Calculadora2 extends javax.swing.JFrame {
             case 2:
                 getVarsIntegral();
                 initFormulaIntegral();
-                txtResV.setText("---------Formula Principal----------\n" + formuInicial);                               
+                txtResV.setText("---------Formula Principal----------\n" + formuInicial);
                 Integrar1(n2, n3, e2, e3);
-                txtResD.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral);                 
+                txtResD.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral+" + "+"C");                 
                 setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
                 setNewVarsIntegral();
@@ -503,10 +518,10 @@ public class Calculadora2 extends javax.swing.JFrame {
                 initFormulaIntegral();
                 txtResA.setText("---------Formula Principal----------\n" + formuInicial);                               
                 Integrar1(n2, n3, e2, e3);
-                txtResV.setText("---------Formula Integrada 1era vez----------\n" + formulaIntegral);                 
+                txtResV.setText("---------Formula Integrada 1era vez----------\n" + formulaIntegral+" + "+"C");                 
                 setNewVarsIntegral();
                 Integrar1(n2, n3, e2, e3);
-                txtResD.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral);    
+                txtResD.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral+" + "+"C");    
                 break;    
             default:
                 break;
@@ -537,6 +552,37 @@ public class Calculadora2 extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_BTSalirActionPerformed
     
+    int NN1(){
+        try{
+            return Integer.parseInt(txtN2.getText());
+        }catch(Exception ex){
+            return 0;
+        }
+    }
+    
+    int EE1(){
+        try{
+            return Integer.parseInt(txtE2.getText());
+        }catch(Exception ex){
+            return 0;
+        }
+    }
+    
+    int NN2(){
+        try{
+            return Integer.parseInt(txtN3.getText());
+        }catch(Exception ex){
+            return 0;
+        }
+    }
+    
+    int EE2(){
+        try{
+            return Integer.parseInt(txtE3.getText());
+        }catch(Exception ex){
+            return 0;
+        }
+    }
     /**
      * @param args the command line arguments
      */
