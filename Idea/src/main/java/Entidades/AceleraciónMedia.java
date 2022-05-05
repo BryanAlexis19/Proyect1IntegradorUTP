@@ -1,39 +1,23 @@
 
 package Entidades;
 
-public class AceleraciónMedia {
+public class AceleraciónMedia extends FormulaGeneral{
     private double VI;
     private double VF;
-    private double Aes;
-    private double TI;
+    private double TI=0;
     private double TF;
 
-    public AceleraciónMedia(double VI, double VF, double Aes, double TI, double TF) {
+    public AceleraciónMedia(double VI, double VF, double TI, double TF, double n1, double n2, double n3, int expo1, int expo2, int expo3, int var) {
+        super(n1, n2, n3, expo1, expo2, expo3, var);
         this.VI = VI;
         this.VF = VF;
-        this.Aes = Aes;
         this.TI = TI;
         this.TF = TF;
     }
 
-    public boolean Aes(){
-        return Aes==(VF-VI)/(TF-TI);
-    }
 
-    public double getTI() {
-        return TI;
-    }
-
-    public void setTI(double TI) {
-        this.TI = TI;
-    }
-
-    public double getTF() {
-        return TF;
-    }
-
-    public void setTF(double TF) {
-        this.TF = TF;
+    public double Aes(){
+        return (VF-VI)/(TF-TI);
     }
 
     public double getVI() {
@@ -52,12 +36,20 @@ public class AceleraciónMedia {
         this.VF = VF;
     }
 
-    public double getAes() {
-        return Aes;
+    public double getTI() {
+        return TI;
     }
 
-    public void setAes(double Aes) {
-        this.Aes = Aes;
+    public void setTI(double TI) {
+        this.TI = TI;
+    }
+
+    public double getTF() {
+        return TF;
+    }
+
+    public void setTF(double TF) {
+        this.TF = TF;
     }
     
 }
