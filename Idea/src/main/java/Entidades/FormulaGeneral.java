@@ -108,7 +108,14 @@ public class FormulaGeneral {
         expo3 = expo3 - 1;
     }
     
-
+    public void Integral(){
+        expo1 = expo1 + 1;
+        n1 = n1 / expo1;
+        expo2 = expo2 + 1;
+        n2 = n2 / expo2;
+        expo3 = expo3 + 1;
+        n3 = n3 / expo3;
+    }
     
     
     
