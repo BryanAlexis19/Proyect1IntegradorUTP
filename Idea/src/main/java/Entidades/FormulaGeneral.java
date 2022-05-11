@@ -13,7 +13,6 @@ public class FormulaGeneral {
     private int expo3;
     //Variable (X) de la formula
     private int var;
-    //ArrayList
     
     //Constructor vacio
     public FormulaGeneral (){        
@@ -29,7 +28,7 @@ public class FormulaGeneral {
         this.var =var;
     }
     //Constructor recargado SIN VARIABLE DE TIEMPO
-    public FormulaGeneral(/*parametro*/double n1, double n2, double n3, int expo1, int expo2, int expo3) {
+    public FormulaGeneral(double n1, double n2, double n3, int expo1, int expo2, int expo3) {
         this.n1 = n1;
         this.n2 = n2;
         this.n3 = n3;
@@ -136,9 +135,8 @@ public class FormulaGeneral {
     public String ImprimirFormula1() {
         return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
     }
-    //metodo
-    public void Derivar(/*definicion o parametro*/){
-        //variable global
+
+    public void Derivar(){        
         n1 = n1 * expo1;
         expo1 = expo1 - 1;
         n2 = n2 * expo2;

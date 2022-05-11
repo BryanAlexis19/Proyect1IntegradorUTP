@@ -7,7 +7,8 @@ public class AceleraciónMedia extends FormulaGeneral{
     private double TI=0;
     private double TF;
 
-    public AceleraciónMedia(double VI, double VF, double TI, double TF, double n1, double n2, double n3, int expo1, int expo2, int expo3, int var) {
+    public AceleraciónMedia(double VI, double VF, double TI, double TF, double n1, 
+            double n2, double n3, int expo1, int expo2, int expo3, int var) {
         super(n1, n2, n3, expo1, expo2, expo3, var);
         this.VI = VI;
         this.VF = VF;

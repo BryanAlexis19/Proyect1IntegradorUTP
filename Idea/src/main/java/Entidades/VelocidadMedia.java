@@ -7,7 +7,8 @@ public class VelocidadMedia extends FormulaGeneral{
     private double TF;
     private double TI;
 
-    public VelocidadMedia(double PF, double PI, double TF, double TI, double n2, double n3, int expo2, int expo3, int var) {
+    public VelocidadMedia(double PF, double PI, double TF, double TI, 
+            double n2, double n3, int expo2, int expo3, int var) {
         super(n2, n3, expo2, expo3, var);
         this.PF = PF;
         this.PI = PI;
