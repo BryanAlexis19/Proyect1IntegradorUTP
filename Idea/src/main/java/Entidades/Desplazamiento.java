@@ -15,6 +15,10 @@ public class Desplazamiento extends FormulaGeneral{
         this.TI = TI;
     }
     
+    public Desplazamiento(double n1, double n2, double n3, int expo1, int expo2, int expo3, int var) {
+        super(n1, n2, n3, expo1, expo2, expo3, var);        
+    }
+    
     public double des(){
         return PF-PI;
     }
@@ -50,4 +54,5 @@ public class Desplazamiento extends FormulaGeneral{
     public void setTI(int TI) {
         this.TI = TI;
     }
+    
 }

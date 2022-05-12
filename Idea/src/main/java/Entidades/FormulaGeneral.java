@@ -28,7 +28,7 @@ public class FormulaGeneral {
         this.var =var;
     }
     //Constructor recargado SIN VARIABLE DE TIEMPO
-    public FormulaGeneral(double n1, double n2, double n3, int expo1, int expo2, int expo3) {
+   public FormulaGeneral(double n1, double n2, double n3, int expo1, int expo2, int expo3) {
         this.n1 = n1;
         this.n2 = n2;
         this.n3 = n3;
@@ -36,6 +36,7 @@ public class FormulaGeneral {
         this.expo2 = expo2;
         this.expo3 = expo3;
     }
+     //Constructor recargado SIN VARIABLE DE TIEMPO
     //Constructor recargado sin variable de tiempo ni primeras varibles
     public FormulaGeneral(double n2, double n3,int expo2, int expo3) {
         this.n2 = n2;
@@ -107,6 +108,10 @@ public class FormulaGeneral {
         this.var = var;
     }
     
+    public void formatNumber(){
+        
+    }
+    
     public String ImprimirFormula() {
         if(n1==0 && expo2>0 && expo3>0 ){
         return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
@@ -158,5 +163,10 @@ public class FormulaGeneral {
         expo3 = expo3 + 1;
         n3 = n3 / expo3;
     }
-    
+        
+    public double OperarT() {
+        double resT;        
+        resT = n1 + (n2 * Math.pow(var, expo2)) + (n3 * Math.pow(var, expo3));        
+        return resT;
+    }
 }
