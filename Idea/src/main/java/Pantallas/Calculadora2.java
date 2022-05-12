@@ -14,6 +14,9 @@ public class Calculadora2 extends javax.swing.JFrame {
     static int e1;
     static int e2;
     static int e3;
+    static int varT;
+    static double respConTiempo;
+
        
     static ArrayList<FormulaGeneral> listaFormula1 = new ArrayList<>();
     FormulaGeneral control;
@@ -438,10 +441,17 @@ public class Calculadora2 extends javax.swing.JFrame {
         }
     }
     
+    public void getTiempo(){ 
+        try {
+            varT = Integer.parseInt(txtTiempo.getText());
+        } catch (Exception e) {
+            varT = 0;
+        }   
+    }
     
     public void initFormula() {
-        getVars();    /*constructor*/  
-/*objeto*/control = new FormulaGeneral(/*argumentos*/n1, n2, n3, e1, e2, e3); /*son los parametros requeridos para el metodo , los cuales se deben especificar*/
+        getVars(); 
+        control = new FormulaGeneral(n1, n2, n3, e1, e2, e3);
         formuInicial = control.ImprimirFormula();
     }
 
@@ -480,58 +490,80 @@ public class Calculadora2 extends javax.swing.JFrame {
         for (FormulaGeneral fg : listaFormula1) {
             fg.Integral();
             formulaIntegral = fg.ImprimirFormula1();
-            //System.out.println(fg.ImprimirFormula());
         }
         setNewVarsIntegral();
         listaFormula1.clear();
 
-        //FormulaGeneral nuevaFormula[] = new FormulaGeneral[listaFormula1.size()];
-        //listaFormula1.toArray(nuevaFormula);
     }
+    
+    public void operarTiempo2(){
+        getTiempo();
+        if(Tipo==1){
+            control = new FormulaGeneral(n1, n2, n3, 0, e2, e3, varT);
+        } else if(Tipo==2 || Tipo==3){
+            control = new FormulaGeneral(0, n2, n3, 0, e2, e3, varT);
+        }        
+        respConTiempo = control.OperarT();
+    }
+    
+    public void clearResult() {
+        txtResultadoD.setText(null);
+        txtResultadoV.setText(null);
+        txtResultadoA.setText(null);    
+    }
+    
+    
+    
     private void BTNCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalcularActionPerformed
-        if(NN1()==0){
+        if(NN1()==0 || EE1()==0 || NN2()==0 || EE2()==0){
             msg("Faltan datos");return;
         }
-        if(EE1()==0){
-            msg("Faltan datos");return;
-        }
-        if(NN2()==0){
-            msg("Faltan datos");return;
-        }
-        if(EE2()==0){
-            msg("Faltan datos");return;
-        }
+ 
         switch (Tipo) {
-            case 1:              
+                case 1:
+                    if(NN()==0){
+                    msg("Faltan datos");return;
+                    }
                 getVars();
                 initFormula();
-                txtResD.setText("---------Formula Principal----------\n" + formuInicial);                               
+                if (bd()==0){ clearResult();} else { operarTiempo2(); txtResultadoD.setText("" + respConTiempo); }                
+                txtResD.setText("---------Formula Principal----------\n" + formuInicial);                
                 Derivar1(n1, n2, n3, e1, e2, e3);
+                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo);}                
                 txtResV.setText("---------Formula Derivada 1 vez----------\n" + formulaDerivada);                 
                 setNewVars();
                 Derivar1(n1, n2, n3, e1, e2, e3);
+                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }               
                 txtResA.setText("---------Formula Derivada por 2da vez----------\n" + formulaDerivada);                
                 break;
+
             case 2:
                 getVarsIntegral();
                 initFormulaIntegral();
+                if (bd()==0){ clearResult();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
                 txtResV.setText("---------Formula Principal----------\n" + formuInicial);
                 Integrar1(n2, n3, e2, e3);
+                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoD.setText("" + respConTiempo); }
                 txtResD.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral+" + "+"C");                 
                 setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
                 setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
+                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); } 
                 txtResA.setText("---------Formula Derivada por 1 vez----------\n" + formulaDerivada);    
                 break;
+                
             case 3:              
                 getVarsIntegral();
                 initFormulaIntegral();
+                if (bd()==0){ clearResult();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }
                 txtResA.setText("---------Formula Principal----------\n" + formuInicial);                               
                 Integrar1(n2, n3, e2, e3);
+                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
                 txtResV.setText("---------Formula Integrada 1era vez----------\n" + formulaIntegral+" + "+"C");                 
                 setNewVarsIntegral();
                 Integrar1(n2, n3, e2, e3);
+                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoD.setText("" + respConTiempo); } 
                 txtResD.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral+" + "+"C");    
                 break;    
             default:
@@ -591,6 +623,22 @@ public class Calculadora2 extends javax.swing.JFrame {
         try{
             return Integer.parseInt(txtE3.getText());
         }catch(Exception ex){
+            return 0;
+        }
+    }
+    
+    int bd() {
+        try {
+            return Integer.parseInt(txtTiempo.getText());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    
+    int NN(){
+        try {
+            return Integer.parseInt(txtN1.getText());
+        } catch (Exception e) {
             return 0;
         }
     }
