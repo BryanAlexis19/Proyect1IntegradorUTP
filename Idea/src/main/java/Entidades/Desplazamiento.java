@@ -1,12 +1,12 @@
 
 package Entidades;
 
-public class Desplazamiento1  {
+public class Desplazamiento  {
     
     private double PF;
     private double PI;
     
-    public Desplazamiento1(double pi, double pf){
+    public Desplazamiento(double pi, double pf){
         this.PI = pi;
         this.PF = pf;
     }

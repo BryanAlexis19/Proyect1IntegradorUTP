@@ -2,13 +2,13 @@
 package Entidades;
 import Interfaces.Constantes;
 
-public class VelocidadMedia2 implements Constantes{
+public class VelocidadMedia implements Constantes{
 
     private double PF;
     private double PI;
     private double TF;
 
-    public VelocidadMedia2(double PF, double PI, double TF) {
+    public VelocidadMedia(double PF, double PI, double TF) {
         this.PF = PF;
         this.PI = PI;
         this.TF = TF;

@@ -2,9 +2,9 @@
 
 package Pantallas;
 import Entidades.FormulaGeneral;
-import Entidades.Desplazamiento1;
-import Entidades.VelocidadMedia2;
-import Entidades.AceleracionMedia2;
+import Entidades.Desplazamiento;
+import Entidades.VelocidadMedia;
+import Entidades.AceleracionMedia;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 public class Calculadora2 extends javax.swing.JFrame {
@@ -27,9 +27,9 @@ public class Calculadora2 extends javax.swing.JFrame {
        
     static ArrayList<FormulaGeneral> listaFormula1 = new ArrayList<>();
     FormulaGeneral control;
-    Desplazamiento1 despla;
-    VelocidadMedia2 velMed;
-    AceleracionMedia2 acmed;
+    Desplazamiento despla;
+    VelocidadMedia velMed;
+    AceleracionMedia acmed;
     String formuInicial;
     static String formulaDerivada;
     static String formulaIntegral;
@@ -377,12 +377,12 @@ public class Calculadora2 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BTSalir)
+                    .addComponent(BTSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -421,8 +421,9 @@ public class Calculadora2 extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                             .addComponent(jScrollPane2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BTNCalcular)
-                        .addGap(93, 93, 93)
+                        .addGap(100, 100, 100)
+                        .addComponent(BTNCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -443,7 +444,7 @@ public class Calculadora2 extends javax.swing.JFrame {
                         .addComponent(txtDespF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtResultadoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtResultadoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Calculadora", jPanel1);
@@ -587,33 +588,36 @@ public class Calculadora2 extends javax.swing.JFrame {
     public void clearResult1() {
         txtResultadoP.setText(null);
         txtResultadoV.setText(null);
-        txtResultadoA.setText(null);    
-    }
-    
-    public void clearResult2() {
+        txtResultadoA.setText(null);
         txtDespF.setText(null);
         txtVelMediaF.setText(null);
-        txtAcelMediaF.setText(null);    
+        txtAcelMediaF.setText(null); 
     }
+    
     
     public void  calcPromedios(){
         if(Tipo==1){
-           despla = new Desplazamiento1(n1,respConTiempo);
+           despla = new Desplazamiento(n1,respConTiempo);
            desplazF = despla.calcDesp();           
-           velMed = new VelocidadMedia2(respConTiempo, n1, varT);
+           velMed = new VelocidadMedia(respConTiempo, n1, varT);
            velMediaF = velMed.calcVelMedia();
         }else if (Tipo==2 || Tipo==3) {
+           despla = new Desplazamiento(0,respConTiempo);
+           desplazF = despla.calcDesp();           
+           velMed = new VelocidadMedia(respConTiempo, 0, varT);
+           velMediaF = velMed.calcVelMedia();
             
         }
      
     }
     
-    public void calPromedios2(){
+    public void calcPromedios2(){
         if(Tipo==1){
-           acmed = new AceleracionMedia2(respConTiempo, varT);
+           acmed = new AceleracionMedia(respConTiempo, varT);
            acelMediaF = acmed.calcAcelMedia();
         }else if (Tipo==2 || Tipo==3) {
-            
+           acmed = new AceleracionMedia(respConTiempo, varT);
+           acelMediaF = acmed.calcAcelMedia();
         }
     }
 
@@ -635,7 +639,7 @@ public class Calculadora2 extends javax.swing.JFrame {
                 txtResP.setText("---------Formula Principal----------\n" + formuInicial);                
                 Derivar1(n1, n2, n3, e1, e2, e3);
                 if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo);
-                calPromedios2(); txtAcelMediaF.setText("" + acelMediaF);}                
+                calcPromedios2(); txtAcelMediaF.setText("" + acelMediaF);}                
                 txtResV.setText("---------Formula Derivada 1 vez----------\n" + formulaDerivada);                 
                 setNewVars();                
                 Derivar1(n1, n2, n3, e1, e2, e3);
@@ -649,13 +653,17 @@ public class Calculadora2 extends javax.swing.JFrame {
                 if (bd()==0){ clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
                 txtResV.setText("---------Formula Principal----------\n" + formuInicial);
                 Integrar1(n2, n3, e2, e3);
-                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo); }
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo);
+                calcPromedios(); txtDespF.setText("" + desplazF); txtVelMediaF.setText(""+velMediaF);}
                 txtResP.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral+" + "+"C");                 
                 setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
                 setNewVarsIntegral();
+                //Codigo here
+                if (bd()==0){clearResult1();} else { calcPromedios2(); txtAcelMediaF.setText("" + acelMediaF); }                
                 Derivar2(n2, n3, e2, e3);
-                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); } 
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo);
+                } 
                 txtResA.setText("---------Formula Derivada por 1 vez----------\n" + formulaDerivada);    
                 break;
                 
@@ -665,11 +673,13 @@ public class Calculadora2 extends javax.swing.JFrame {
                 if (bd()==0){ clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }
                 txtResA.setText("---------Formula Principal----------\n" + formuInicial);                               
                 Integrar1(n2, n3, e2, e3);
-                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); 
+                calcPromedios2(); txtAcelMediaF.setText("" + acelMediaF); }                
                 txtResV.setText("---------Formula Integrada 1era vez----------\n" + formulaIntegral+" + "+"C");                 
                 setNewVarsIntegral();
                 Integrar1(n2, n3, e2, e3);
-                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo); } 
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo);
+                calcPromedios(); txtVelMediaF.setText(""+velMediaF); txtDespF.setText("" + desplazF); } 
                 txtResP.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral+" + "+"C");    
                 break;    
             default:
