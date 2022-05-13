@@ -1,8 +1,11 @@
 
+
 package Pantallas;
 import Entidades.FormulaGeneral;
+import Entidades.Desplazamiento1;
+import Entidades.VelocidadMedia2;
+import Entidades.AceleracionMedia2;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 public class Calculadora2 extends javax.swing.JFrame {
     
@@ -16,10 +19,17 @@ public class Calculadora2 extends javax.swing.JFrame {
     static int e3;
     static int varT;
     static double respConTiempo;
+    static double respConTiempo2;
+    static double desplazF;
+    static double velMediaF;
+    static double acelMediaF;
 
        
     static ArrayList<FormulaGeneral> listaFormula1 = new ArrayList<>();
     FormulaGeneral control;
+    Desplazamiento1 despla;
+    VelocidadMedia2 velMed;
+    AceleracionMedia2 acmed;
     String formuInicial;
     static String formulaDerivada;
     static String formulaIntegral;
@@ -29,12 +39,12 @@ public class Calculadora2 extends javax.swing.JFrame {
         initComponents();
         txtE1.setVisible(false);
         txtX1.setVisible(false);
-        txtResD.setEditable(false);
+        txtResP.setEditable(false);
         txtResV.setEditable(false);
         txtResA.setEditable(false);
         txtX2.setEditable(false);
         txtX3.setEditable(false);
-        txtResultadoD.setEditable(false);
+        txtResultadoP.setEditable(false);
         txtResultadoV.setEditable(false);
         txtResultadoA.setEditable(false);
     }
@@ -72,15 +82,24 @@ public class Calculadora2 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtResD = new javax.swing.JTextArea();
+        txtResP = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtResV = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtResA = new javax.swing.JTextArea();
-        txtResultadoD = new javax.swing.JTextField();
+        txtResultadoP = new javax.swing.JTextField();
         txtResultadoA = new javax.swing.JTextField();
         txtResultadoV = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtDespF = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtVelMediaF = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        txtAcelMediaF = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -201,7 +220,7 @@ public class Calculadora2 extends javax.swing.JFrame {
         txtTiempo.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        jLabel7.setText("Desplazamiento");
+        jLabel7.setText("Posición");
 
         jLabel8.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         jLabel8.setText("Velocidad");
@@ -209,10 +228,10 @@ public class Calculadora2 extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         jLabel9.setText("Aceleracion");
 
-        txtResD.setColumns(20);
-        txtResD.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        txtResD.setRows(5);
-        jScrollPane1.setViewportView(txtResD);
+        txtResP.setColumns(20);
+        txtResP.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        txtResP.setRows(5);
+        jScrollPane1.setViewportView(txtResP);
 
         txtResV.setColumns(20);
         txtResV.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
@@ -224,8 +243,8 @@ public class Calculadora2 extends javax.swing.JFrame {
         txtResA.setRows(5);
         jScrollPane3.setViewportView(txtResA);
 
-        txtResultadoD.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        txtResultadoD.setText("Resultado");
+        txtResultadoP.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        txtResultadoP.setText("Resultado");
 
         txtResultadoA.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         txtResultadoA.setText("Resultado");
@@ -235,35 +254,41 @@ public class Calculadora2 extends javax.swing.JFrame {
 
         jLabel10.setText("S");
 
+        jLabel11.setText("Posición / Tiempo");
+
+        txtDespF.setText("Resultado");
+
+        jLabel12.setText("Desplazamiento");
+
+        jLabel13.setText("Velocidad / Tiempo");
+
+        jLabel14.setText("Velocidad Media");
+
+        txtVelMediaF.setText("Resultado");
+
+        jLabel15.setText("Aceleración / Tiempo");
+
+        txtAcelMediaF.setText("Resultado");
+
+        jLabel16.setText("Aceleración Media");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(337, 337, 337)
+                        .addComponent(BTSalir))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(233, 233, 233)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(236, 236, 236)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(251, 251, 251)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtResultadoV, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jLabel8)
-                                                        .addGap(116, 116, 116)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel10))))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(53, 53, 53)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtE1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -285,30 +310,66 @@ public class Calculadora2 extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtE3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(txtX3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(txtResultadoA, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BTNCalcular))
-                        .addGap(44, 44, 44))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtX3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(337, 337, 337)
-                                .addComponent(BTSalir))
-                            .addComponent(jLabel3)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtResultadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 954, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(469, 469, 469)
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(21, 21, 21)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(33, 33, 33)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel7)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(txtResultadoP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(jLabel11))
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(jLabel12))
+                                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(txtDespF, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addGap(63, 63, 63)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel10))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtResultadoV, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel13))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel14)
+                                                        .addComponent(txtVelMediaF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addGap(12, 12, 12)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BTNCalcular)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtResultadoA, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15))
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(txtAcelMediaF))))
+                        .addGap(44, 44, 44)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -320,52 +381,69 @@ public class Calculadora2 extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtE1)
-                            .addComponent(txtE2)
-                            .addComponent(txtE3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtN1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtX1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtN2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtX2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtN3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtX3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel6)
-                        .addGap(7, 7, 7)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtE1)
+                                    .addComponent(txtE2)
+                                    .addComponent(txtE3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtN1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtX1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtN2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtX2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtN3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtX3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(75, 75, 75))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(3, 3, 3))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6)))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtResultadoD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtResultadoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(BTNCalcular)
                         .addGap(93, 93, 93)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtResultadoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtResultadoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtAcelMediaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtVelMediaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDespF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtResultadoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtResultadoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Calculadora", jPanel1);
@@ -374,7 +452,7 @@ public class Calculadora2 extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1393, Short.MAX_VALUE)
+            .addGap(0, 1399, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,9 +548,8 @@ public class Calculadora2 extends javax.swing.JFrame {
         }
         setNewVars();
         listaFormula1.clear();
-
-
     }
+    
     public static void Derivar2(double nu2, double nu3,int ex2, int ex3) {
 
         listaFormula1.add(new FormulaGeneral(nu2, nu3, ex2, ex3));
@@ -484,6 +561,7 @@ public class Calculadora2 extends javax.swing.JFrame {
         listaFormula1.clear();
 
     }
+    
     public static void Integrar1(double nu2, double nu3,int ex2, int ex3) {
 
         listaFormula1.add(new FormulaGeneral(nu2, nu3, ex2, ex3));
@@ -506,13 +584,39 @@ public class Calculadora2 extends javax.swing.JFrame {
         respConTiempo = control.OperarT();
     }
     
-    public void clearResult() {
-        txtResultadoD.setText(null);
+    public void clearResult1() {
+        txtResultadoP.setText(null);
         txtResultadoV.setText(null);
         txtResultadoA.setText(null);    
     }
     
+    public void clearResult2() {
+        txtDespF.setText(null);
+        txtVelMediaF.setText(null);
+        txtAcelMediaF.setText(null);    
+    }
     
+    public void  calcPromedios(){
+        if(Tipo==1){
+           despla = new Desplazamiento1(n1,respConTiempo);
+           desplazF = despla.calcDesp();           
+           velMed = new VelocidadMedia2(respConTiempo, n1, varT);
+           velMediaF = velMed.calcVelMedia();
+        }else if (Tipo==2 || Tipo==3) {
+            
+        }
+     
+    }
+    
+    public void calPromedios2(){
+        if(Tipo==1){
+           acmed = new AceleracionMedia2(respConTiempo, varT);
+           acelMediaF = acmed.calcAcelMedia();
+        }else if (Tipo==2 || Tipo==3) {
+            
+        }
+    }
+
     
     private void BTNCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNCalcularActionPerformed
         if(NN1()==0 || EE1()==0 || NN2()==0 || EE2()==0){
@@ -526,45 +630,47 @@ public class Calculadora2 extends javax.swing.JFrame {
                     }
                 getVars();
                 initFormula();
-                if (bd()==0){ clearResult();} else { operarTiempo2(); txtResultadoD.setText("" + respConTiempo); }                
-                txtResD.setText("---------Formula Principal----------\n" + formuInicial);                
+                if (bd()==0){ clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo);
+                calcPromedios(); txtDespF.setText("" + desplazF); txtVelMediaF.setText(""+velMediaF);}                
+                txtResP.setText("---------Formula Principal----------\n" + formuInicial);                
                 Derivar1(n1, n2, n3, e1, e2, e3);
-                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo);}                
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo);
+                calPromedios2(); txtAcelMediaF.setText("" + acelMediaF);}                
                 txtResV.setText("---------Formula Derivada 1 vez----------\n" + formulaDerivada);                 
-                setNewVars();
+                setNewVars();                
                 Derivar1(n1, n2, n3, e1, e2, e3);
-                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }               
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }               
                 txtResA.setText("---------Formula Derivada por 2da vez----------\n" + formulaDerivada);                
                 break;
 
             case 2:
                 getVarsIntegral();
                 initFormulaIntegral();
-                if (bd()==0){ clearResult();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
+                if (bd()==0){ clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
                 txtResV.setText("---------Formula Principal----------\n" + formuInicial);
                 Integrar1(n2, n3, e2, e3);
-                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoD.setText("" + respConTiempo); }
-                txtResD.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral+" + "+"C");                 
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo); }
+                txtResP.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral+" + "+"C");                 
                 setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
                 setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
-                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); } 
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); } 
                 txtResA.setText("---------Formula Derivada por 1 vez----------\n" + formulaDerivada);    
                 break;
                 
             case 3:              
                 getVarsIntegral();
                 initFormulaIntegral();
-                if (bd()==0){ clearResult();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }
+                if (bd()==0){ clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }
                 txtResA.setText("---------Formula Principal----------\n" + formuInicial);                               
                 Integrar1(n2, n3, e2, e3);
-                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
                 txtResV.setText("---------Formula Integrada 1era vez----------\n" + formulaIntegral+" + "+"C");                 
                 setNewVarsIntegral();
                 Integrar1(n2, n3, e2, e3);
-                if (bd()==0){clearResult();} else { operarTiempo2(); txtResultadoD.setText("" + respConTiempo); } 
-                txtResD.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral+" + "+"C");    
+                if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo); } 
+                txtResP.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral+" + "+"C");    
                 break;    
             default:
                 break;
@@ -687,6 +793,12 @@ public class Calculadora2 extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -702,6 +814,8 @@ public class Calculadora2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField txtAcelMediaF;
+    private javax.swing.JTextField txtDespF;
     private javax.swing.JTextField txtE1;
     private javax.swing.JTextField txtE2;
     private javax.swing.JTextField txtE3;
@@ -709,12 +823,13 @@ public class Calculadora2 extends javax.swing.JFrame {
     private javax.swing.JTextField txtN2;
     private javax.swing.JTextField txtN3;
     private javax.swing.JTextArea txtResA;
-    private javax.swing.JTextArea txtResD;
+    private javax.swing.JTextArea txtResP;
     private javax.swing.JTextArea txtResV;
     private javax.swing.JTextField txtResultadoA;
-    private javax.swing.JTextField txtResultadoD;
+    private javax.swing.JTextField txtResultadoP;
     private javax.swing.JTextField txtResultadoV;
     private javax.swing.JTextField txtTiempo;
+    private javax.swing.JTextField txtVelMediaF;
     private javax.swing.JTextField txtX1;
     private javax.swing.JTextField txtX2;
     private javax.swing.JTextField txtX3;
