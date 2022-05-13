@@ -3,12 +3,12 @@ package Entidades;
  
 import Interfaces.Constantes;
 
-public class AceleracionMedia2 implements Constantes {
+public class AceleracionMedia implements Constantes {
     
     private double VF;
     private double TF;
 
-    public AceleracionMedia2(double VF, double TF) {
+    public AceleracionMedia(double VF, double TF) {
         this.VF = VF;
 
         this.TF = TF;
