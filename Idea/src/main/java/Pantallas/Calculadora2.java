@@ -637,16 +637,17 @@ public class Calculadora2 extends javax.swing.JFrame {
                 if (bd()==0){ clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo);
                 calcPromedios(); txtDespF.setText("" + desplazF); txtVelMediaF.setText(""+velMediaF);}           
                 txtResP.setText("---------Formula Principal----------\n" + formuInicial);
-                control.Procedimiento(txtResP);                                  
+                control.ProcedimientoP(Tipo,txtResP);                                  
                 Derivar1(n1, n2, n3, e1, e2, e3);
                 if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo);
                 calcPromedios2(); txtAcelMediaF.setText("" + acelMediaF);}                
                 txtResV.setText("---------Formula Derivada 1 vez----------\n" + formulaDerivada);                 
-                control.Procedimiento(txtResV);
+                control.ProcedimientoV(Tipo,txtResV);
                 setNewVars();
                 Derivar1(n1, n2, n3, e1, e2, e3);
                 if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }               
-                txtResA.setText("---------Formula Derivada por 2da vez----------\n" + formulaDerivada);                
+                txtResA.setText("---------Formula Derivada por 2da vez----------\n" + formulaDerivada);
+                control.ProcedimientoA(Tipo,txtResA);
                 break;
 
             case 2:
