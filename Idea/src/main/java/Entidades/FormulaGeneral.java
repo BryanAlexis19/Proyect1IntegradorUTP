@@ -268,7 +268,7 @@ public class FormulaGeneral {
             double NE2=0;
             int T=var;
             if(Tipo==1){    
-            if(T>0){//errores esta bien pero a la vez mal haha
+            if(T>0){
                 ar.append("\n---PROCEDIMIENTO(V/T)-------------------------------");
                 ar.append("\n "+n2+" * "+T+"^"+expo2+" + "+n3+" * "+T+"^"+expo3);
                 r=Math.pow(T, expo2);
