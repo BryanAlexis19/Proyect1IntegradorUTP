@@ -100,7 +100,6 @@ public class Calculadora2 extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtAcelMediaF = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -449,19 +448,6 @@ public class Calculadora2 extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Calculadora", jPanel1);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1399, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Graficas", jPanel3);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -655,10 +641,12 @@ public class Calculadora2 extends javax.swing.JFrame {
                 initFormulaIntegral();
                 if (bd()==0){ clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); }
                 txtResV.setText("---------Formula Principal----------\n" + formuInicial);
+                control.ProcedimientoV(Tipo,txtResV);  
                 Integrar1(n2, n3, e2, e3);
                 if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo);
                 calcPromedios(); txtDespF.setText("" + desplazF); txtVelMediaF.setText(""+velMediaF);}
                 txtResP.setText("---------Formula Integral 1 vez----------\n" + formulaIntegral+" + "+"C");                 
+                control.ProcedimientoP(Tipo,txtResP);
                 setNewVarsIntegral();
                 Derivar2(n2, n3, e2, e3);
                 setNewVarsIntegral();
@@ -667,7 +655,8 @@ public class Calculadora2 extends javax.swing.JFrame {
                 Derivar2(n2, n3, e2, e3);
                 if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo);
                 } 
-                txtResA.setText("---------Formula Derivada por 1 vez----------\n" + formulaDerivada);    
+                txtResA.setText("---------Formula Derivada por 1 vez----------\n" + formulaDerivada);
+                control.ProcedimientoA(Tipo,txtResA);
                 break;
                 
             case 3:              
@@ -675,15 +664,18 @@ public class Calculadora2 extends javax.swing.JFrame {
                 initFormulaIntegral();
                 if (bd()==0){ clearResult1();} else { operarTiempo2(); txtResultadoA.setText("" + respConTiempo); }
                 txtResA.setText("---------Formula Principal----------\n" + formuInicial);                               
+                control.ProcedimientoA(Tipo,txtResA);
                 Integrar1(n2, n3, e2, e3);
                 if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoV.setText("" + respConTiempo); 
                 calcPromedios2(); txtAcelMediaF.setText("" + acelMediaF); }                
                 txtResV.setText("---------Formula Integrada 1era vez----------\n" + formulaIntegral+" + "+"C");                 
+                control.ProcedimientoV(Tipo,txtResV);
                 setNewVarsIntegral();
                 Integrar1(n2, n3, e2, e3);
                 if (bd()==0){clearResult1();} else { operarTiempo2(); txtResultadoP.setText("" + respConTiempo);
                 calcPromedios(); txtVelMediaF.setText(""+velMediaF); txtDespF.setText("" + desplazF); } 
-                txtResP.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral+" + "+"C");    
+                txtResP.setText("---------Formula integrada 2da vez----------\n" + formulaIntegral+" + "+"C");   
+                control.ProcedimientoP(Tipo,txtResP);
                 break;    
             default:
                 break;
@@ -822,7 +814,6 @@ public class Calculadora2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
