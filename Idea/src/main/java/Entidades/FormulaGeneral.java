@@ -1,5 +1,6 @@
 
 package Entidades;
+import java.text.DecimalFormat;
 import java.util.*;
 import javax.swing.JTextArea;
 public class FormulaGeneral {
@@ -115,35 +116,34 @@ public class FormulaGeneral {
     
     public String ImprimirFormula() {
         if(n1==0 && expo2>0 && expo3>0 ){
-        return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
+        return fto(n2) + "X^" + expo2 + " + " +  fto(n3) + "X^" + expo3;
         }else if(n2==0){
-        return n1 +" + " + n3 + "X^" + expo3;
+        return fto(n1) +" + " + fto(n3) + "X^" + expo3;
         }else if(n3==0){
-        return n1 +" + " + n2 + "X^" + expo2;
+        return fto(n1) +" + " + fto(n2) + "X^" + expo2;
         }else if(n2==0 && n1==0){
-        return n3 + "X^" + expo3;
+        return fto(n3) + "X^" + expo3;
         }else if(n3==0 && n1==0){
-        return n2 + "X^" + expo2;
+        return fto(n2) + "X^" + expo2;
         }else if(expo2==0){
-        return n2 +" + "+ n3 + "X^" + expo3;
+        return fto(n2) +" + "+ fto(n3) + "X^" + expo3;
         }else if(expo3==0){
-        return n2  + "X^" + expo2 +" + "+ n3;
+        return fto(n2)  + "X^" + expo2 +" + "+ fto(n3);
         }else if(expo2==0 && expo3==0){
-        return n2 +" + "+ n3;
+        return fto(n2) +" + "+ fto(n3);
         }else if(n2==0 && expo2==0){
-        return n3 + "X^" + expo3 ;
+        return fto(n3) + "X^" + expo3 ;
         }else if(n3==0 && expo3==0){
-        return n2 + "X^" +expo2;
+        return fto(n2) + "X^" +expo2;
         }else
-        return n1 +" + " + n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
+        return fto(n1) +" + " + fto(n2) + "X^" + expo2 + " + " +  fto(n3) + "X^" + expo3;
     }
     
     public String ImprimirFormula1() {
-        return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
+        return fto(n2) + "X^" + expo2 + " + " +  fto(n3) + "X^" + expo3;
     }
 
     public void Derivar(){        
-        n1 = n1 * expo1;
         expo1 = expo1 - 1;
         n2 = n2 * expo2;
         expo2 = expo2 - 1;
@@ -170,6 +170,24 @@ public class FormulaGeneral {
         resT = n1 + (n2 * Math.pow(var, expo2)) + (n3 * Math.pow(var, expo3));        
         return resT;
     }
+    
+    public String fto(double param){
+        DecimalFormat format1 = new DecimalFormat("0.00");
+        DecimalFormat format2 = new DecimalFormat("#");
+        String rpta;
+        
+        if(param - Math.floor(param)==0){
+            rpta = format2.format(param);
+        }else{
+            if(param<1){
+                rpta = format1.format(param);
+            }else{
+                rpta = format2.format(param);
+            }
+        }
+        return rpta;
+    }
+    
     public void ProcedimientoP(int Tipo,JTextArea ar){
         double r=0;
         double r2=0;
