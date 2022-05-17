@@ -109,11 +109,7 @@ public class FormulaGeneral {
     public void setVar(int var) {
         this.var = var;
     }
-    
-    public void formatNumber(){
-        
-    }
-    
+       
     public String ImprimirFormula() {
         if(n1==0 && expo2>0 && expo3>0 ){
         return fto(n2) + "X^" + expo2 + " + " +  fto(n3) + "X^" + expo3;
@@ -140,7 +136,7 @@ public class FormulaGeneral {
     }
     
     public String ImprimirFormula1() {
-        return n2 + "X^" + expo2 + " + " +  n3 + "X^" + expo3;
+        return fto(n2) + "X^" + expo2 + " + " +  fto(n3) + "X^" + expo3;
     }
 
     public void Derivar(){        
@@ -200,59 +196,60 @@ public class FormulaGeneral {
         if(Tipo==1){    
             if(T>0){
                 ar.append("\n---PROCEDIMIENTO(P/T)-------------------------------");
-                ar.append("\n "+n1+" + "+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3);
+                ar.append("\n "+ fto(n1) +" + "+ fto(n2)+" * "+" ("+T+")^ "+expo2+" + "+fto(n3)+" * "+" ("+T+")^ "+expo3);
                 N=n2*Math.pow(T, expo2);
                 N2=n3*Math.pow(T, expo3);
-                ar.append("\n "+n1+" + "+N+" + "+N2);
+                ar.append("\n "+fto(n1)+" + "+fto(N)+" + "+fto(N2));
                 ar.append("\n----------------------------------------------------");
                 ar.append("\n--------DESPLAZAMIENTO------------------------------");
-                ar.append("\n ("+n1+" + "+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3+")"+" - "+n1+" + "+n2+" * "+" ("+0+")^ "+expo2+" + "+n3+" * "+" ("+0+")^ "+expo3);
+                ar.append("\n ("+fto(n1)+" + "+fto(n2)+" * "+" ("+T+")^ "+expo2+" + "+fto(n3)+" * "+" ("+T+")^ "+expo3+")"+" - "+fto(n1)+" + "+fto(n2)+" * "+" ("+0+")^ "+expo2+" + "+fto(n3)+" * "+" ("+0+")^ "+expo3);
                 ar.append("\n ("+n1+" + "+N+" + "+N2+")"+" - "+n1);
                 r=n1+N+N2;
-                ar.append("\n ("+r+")"+" - "+n1);
+                ar.append("\n ("+fto(r)+")"+" - "+fto(n1));
                 ar.append("\n----------------------------------------------------");
                 ar.append("\n--------VelocidadMedia------------------------------");
-                ar.append("\n (("+n1+" + "+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3+")"+" - "+n1+" + "+n2+" * "+" ("+0+")^ "+expo2+" + "+n3+" * "+" ("+0+")^ "+expo3+")/ "+T+" - "+0);
-                ar.append("\n (("+n1+" + "+N+" + "+N2+")"+" - "+n1+")/ "+T+" - "+0);
+                ar.append("\n (("+fto(n1)+" + "+fto(n2)+" * "+" ("+T+")^ "+expo2+" + "+fto(n3)+" * "+" ("+T+")^ "+expo3+")"+" - "+fto(n1)+" + "+fto(n2)+" * "+" ("+0+")^ "+expo2+" + "+fto(n3)+" * "+" ("+0+")^ "+expo3+")/ "+T+" - "+0);
+                ar.append("\n (("+fto(n1)+" + "+fto(N)+" + "+fto(N2)+")"+" - "+fto(n1)+")/ "+T+" - "+0);
                 r=n1+N+N2;
-                ar.append("\n ("+r+")"+" - "+n1+")/ "+T);
+                ar.append("\n ("+fto(r)+")"+" - "+fto(n1)+")/ "+T);
                 ar.append("\n----------------------------------------------------");
                 ar.append("\n---PROCEDIMIENTO(Derivada)---------------------------------");
-                ar.append("\n "+n1+" * "+0+" + ("+n2+" * "+expo2+") X^("+expo2+" - "+1+") + ("+n3+" * "+expo3+") X^("+expo3+" - "+1+")");
+                ar.append("\n "+fto(n1)+" * "+0+" + ("+fto(n2)+" * "+expo2+") X^("+expo2+" - "+1+") + ("+fto(n3)+" * "+expo3+") X^("+expo3+" - "+1+")");
                 N=n2*expo2;
                 NE=expo2-1;
                 N2=n3*expo3;
                 NE2=expo3-1;
-                ar.append("\n "+N+" X^"+NE+" + "+N2+" X^"+NE2);
+                ar.append("\n "+fto(N)+" X^"+fto(NE)+" + "+fto(N2)+" X^"+fto(NE2));
                 ar.append("\n----------------------------------------------------");
             }else{
                 ar.append("\n---PROCEDIMIENTO(Derivada)---------------------------------");
-                ar.append("\n "+n1+" * "+0+" + ("+n2+" * "+expo2+") X^("+expo2+" - "+1+") + ("+n3+" * "+expo3+") X^("+expo3+" - "+1+")");
+                ar.append("\n "+fto(n1)+" * "+0+" + ("+fto(n2)+" * "+expo2+") X^("+expo2+" - "+1+") + ("+fto(n3)+" * "+expo3+") X^("+expo3+" - "+1+")");
                 N=n2*expo2;
                 NE=expo2-1;
                 N2=n3*expo3;
                 NE2=expo3-1;
-                ar.append("\n "+N+" X^"+NE+" + "+N2+" X^"+NE2);
-                ar.append("\n----------------------------------------------------");}
+                ar.append("\n "+fto(N)+" X^"+fto(NE)+" + "+fto(N2)+" X^"+fto(NE2));
+                ar.append("\n----------------------------------------------------");
+            }
         }else if(Tipo==2 || Tipo==3){
                 if(T>0){
                 ar.append("\n---PROCEDIMIENTO(P/T)-------------------------------");
-                ar.append("\n "+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3+" + C");
+                ar.append("\n "+fto(n2)+" * "+" ("+T+")^ "+expo2+" + "+fto(n3)+" * "+" ("+T+")^ "+expo3+" + C");
                 N=n2*Math.pow(T, expo2);
                 N2=n3*Math.pow(T, expo3);
-                ar.append("\n "+N+" + "+N2+" + C");
+                ar.append("\n "+fto(N)+" + "+fto(N2)+" + C");
                 ar.append("\n----------------------------------------------------");
                 ar.append("\n--------DESPLAZAMIENTO------------------------------");
-                ar.append("\n ("+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3+")"+"+ C - "+n2+" * "+" ("+0+")^ "+expo2+" + "+n3+" * "+" ("+0+")^ "+expo3+" + C");
-                ar.append("\n ("+N+" + "+N2+")");
+                ar.append("\n ("+fto(n2)+" * "+" ("+T+")^ "+expo2+" + "+fto(n3)+" * "+" ("+T+")^ "+expo3+")"+"+ C - "+fto(n2)+" * "+" ("+0+")^ "+expo2+" + "+fto(n3)+" * "+" ("+0+")^ "+expo3+" + C");
+                ar.append("\n ("+fto(N)+" + "+fto(N2)+")");
                 r=N+N2;
-                ar.append("\n ("+r+")");
+                ar.append("\n ("+fto(r)+")");
                 ar.append("\n----------------------------------------------------");
                 ar.append("\n--------VelocidadMedia------------------------------");
-                ar.append("\n (("+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3+")"+"+ C - "+n2+" * "+" ("+0+")^ "+expo2+" + "+n3+" * "+" ("+0+")^ "+expo3+" + C))/ "+T+" - "+0);
-                ar.append("\n (("+N+" + "+N2+")"+" + C)/ "+T+" - "+0);
+                ar.append("\n (("+fto(n2)+" * "+" ("+T+")^ "+expo2+" + "+fto(n3)+" * "+" ("+T+")^ "+expo3+")"+"+ C - "+fto(n2)+" * "+" ("+0+")^ "+expo2+" + "+fto(n3)+" * "+" ("+0+")^ "+expo3+" + C))/ "+T+" - "+0);
+                ar.append("\n (("+fto(N)+" + "+fto(N2)+")"+" + C)/ "+T+" - "+0);
                 r=n1+N+N2;
-                ar.append("\n ("+r+")"+" + C)/ "+T);
+                ar.append("\n ("+fto(r)+")"+" + C)/ "+T);
                 ar.append("\n----------------------------------------------------");
                 }
         }
@@ -270,27 +267,27 @@ public class FormulaGeneral {
             if(Tipo==1){    
             if(T>0){
                 ar.append("\n---PROCEDIMIENTO(V/T)-------------------------------");
-                ar.append("\n "+n2+" * "+T+"^"+expo2+" + "+n3+" * "+T+"^"+expo3);
+                ar.append("\n "+fto(n2)+" * "+T+"^"+expo2+" + "+fto(n3)+" * "+T+"^"+expo3);
                 r=Math.pow(T, expo2);
                 r2=Math.pow(T, expo3);
-                ar.append("\n "+n2+" * "+ r +" + "+n3+" * "+r2);
+                ar.append("\n "+fto(n2)+" * "+ fto(r)+" + "+fto(n3)+" * "+fto(r2));
                 N=n2*r;
                 N2=n3*r2;
-                ar.append("\n "+N+" + "+N2);
+                ar.append("\n "+fto(N)+" + "+fto(N2));
                 ar.append("\n----------------------------------------------------");
                 ar.append("\n--------AceleracionMedia------------------------------");
-                ar.append("\n (("+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3+")"+" - "+n2+" * "+" ("+0+")^ "+expo2+" + "+n3+" * "+" ("+0+")^ "+expo3+")/ "+T+" - "+0);
-                ar.append("\n (("+n1+" + "+N+" + "+N2+")"+")/ "+T+" - "+0);
+                ar.append("\n (("+fto(n2)+" * "+" ("+fto(T)+")^ "+expo2+" + "+fto(n3)+" * "+" ("+fto(T)+")^ "+expo3+")"+" - "+fto(n2)+" * "+" ("+0+")^ "+expo2+" + "+fto(n3)+" * "+" ("+0+")^ "+expo3+")/ "+T+" - "+0);
+                ar.append("\n (("+fto(n1)+" + "+fto(N)+" + "+fto(N2)+")"+")/ "+T+" - "+0);
                 r=N+N2;
-                ar.append("\n ("+r+")"+" / "+T);
+                ar.append("\n ("+fto(r)+")"+" / "+T);
                 ar.append("\n----------------------------------------------------");
                 ar.append("\n---PROCEDIMIENTO(Derivada)---------------------------------");
-                ar.append("\n "+n1+" * "+0+" + ("+n2+" * "+expo2+") X^("+expo2+" - "+1+") + ("+n3+" * "+expo3+") X^("+expo3+" - "+1+")");
+                ar.append("\n "+fto(n1)+" * "+0+" + ("+fto(n2)+" * "+expo2+") X^("+expo2+" - "+1+") + ("+fto(n3)+" * "+expo3+") X^("+expo3+" - "+1+")");
                 N=n2*expo2;
                 NE=expo2-1;
                 N2=n3*expo3;
                 NE2=expo3-1;
-                ar.append("\n "+N+" X^"+NE+" + "+N2+" X^"+NE2);
+                ar.append("\n "+fto(N)+" X^"+fto(NE)+" + "+fto(N2)+" X^"+fto(NE2));
                 ar.append("\n----------------------------------------------------");
                 }else{
                 ar.append("\n---PROCEDIMIENTO(Derivada)---------------------------------");
@@ -304,65 +301,65 @@ public class FormulaGeneral {
                 }else e=N*NE;
                 r2=NE2-1;
                 ee=N2*NE2;
-                ar.append("\n "+N+" * "+NE+" X^"+NE+"-1 + "+N2+" * "+NE2+" X^"+NE2+"-1");
+                ar.append("\n "+fto(N)+" * "+fto(NE)+" X^"+fto(NE)+"-1 + "+fto(N2)+" * "+fto(NE2)+" X^"+fto(NE2)+"-1");
                 if(r==0){
-                    ar.append("\n "+e+" + "+ee+" X^"+r2);
+                    ar.append("\n "+fto(e)+" + "+fto(ee)+" X^"+fto(r2));
                 }else if(r2==0){
-                    ar.append("\n "+e+" X^"+r+" + "+ee);
-                }else ar.append("\n "+e+" X^"+r+" + "+ee+" X^"+r2);
+                    ar.append("\n "+fto(e)+" X^"+fto(r)+" + "+fto(ee));
+                }else ar.append("\n "+fto(e)+" X^"+fto(r)+" + "+fto(ee)+" X^"+fto(r2));
                 ar.append("\n----------------------------------------------------");
                 }
             } else if(Tipo==2){
                 if(T>0){
                     ar.append("\n---PROCEDIMIENTO(V/T)-------------------------------");
-                    ar.append("\n "+n2+" * "+T+"^"+expo2+" + "+n3+" * "+T+"^"+expo3);
+                    ar.append("\n "+fto(n2)+" * "+T+"^"+expo2+" + "+fto(n3)+" * "+T+"^"+expo3);
                     r=Math.pow(T, expo2);
                     r2=Math.pow(T, expo3);
-                    ar.append("\n "+n2+" * "+ r +" + "+n3+" * "+r2);
+                    ar.append("\n "+fto(n2)+" * "+ fto(r) +" + "+fto(n3)+" * "+fto(r2));
                     N=n2*r;
                     N2=n3*r2;
-                    ar.append("\n "+N+" + "+N2);
+                    ar.append("\n "+fto(N)+" + "+fto(N2));
                     ar.append("\n----------------------------------------------------");
                     ar.append("\n--------AceleracionMedia------------------------------");//Se tendra que descartar no da el valor correcto
-                    ar.append("\n (("+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3+")"+" - "+n2+" * "+" ("+0+")^ "+expo2+" + "+n3+" * "+" ("+0+")^ "+expo3+")/ "+T+" - "+0);
-                    ar.append("\n (("+n1+" + "+N+" + "+N2+")"+")/ "+T+" - "+0);
+                    ar.append("\n (("+fto(n2)+" * "+" ("+T+")^ "+expo2+" + "+fto(n3)+" * "+" ("+T+")^ "+expo3+")"+" - "+fto(n2)+" * "+" ("+0+")^ "+expo2+" + "+fto(n3)+" * "+" ("+0+")^ "+expo3+")/ "+T+" - "+0);
+                    ar.append("\n (("+fto(n1)+" + "+fto(N)+" + "+fto(N2)+")"+")/ "+T+" - "+0);
                     r=n1+N+N2;
-                    ar.append("\n ("+r+")"+" / "+T);
+                    ar.append("\n ("+fto(r)+")"+" / "+T);
                     ar.append("\n----------------------------------------------------");
                 }
                 ar.append("\n---PROCEDIMIENTO(Derivada)---------------------------------");
-                ar.append("\n ("+n2+" * "+expo2+") X^("+expo2+" - "+1+") + ("+n3+" * "+expo3+") X^("+expo3+" - "+1+")");
+                ar.append("\n ("+fto(n2)+" * "+expo2+") X^("+expo2+" - "+1+") + ("+fto(n3)+" * "+expo3+") X^("+expo3+" - "+1+")");
                 N=n2*expo2;
                 NE=expo2-1;
                 N2=n3*expo3;
                 NE2=expo3-1;
-                ar.append("\n "+N+" X^"+NE+" + "+N2+" X^"+NE2);
+                ar.append("\n "+fto(N)+" X^"+fto(NE)+" + "+fto(N2)+" X^"+fto(NE2));
                 ar.append("\n----------------------------------------------------");
                 ar.append("\n---PROCEDIMIENTO(Integral)---------------------------------");
                 NE=expo2+1;
                 N=n2/NE;
                 NE2=expo3+1;                
                 N2=n3/NE2;
-                ar.append("\n ("+n2+" / "+expo2+" + 1) X^("+expo2+" + "+1+") + ("+n3+" / "+expo3+" + 1) X^("+expo3+" + "+1+")");
-                ar.append("\n "+N+" X^"+NE+" + "+N2+" X^"+NE2);
+                ar.append("\n ("+fto(n2)+" / "+expo2+" + 1) X^("+expo2+" + "+1+") + ("+fto(n3)+" / "+expo3+" + 1) X^("+expo3+" + "+1+")");
+                ar.append("\n "+fto(N)+" X^"+fto(NE)+" + "+fto(N2)+" X^"+fto(NE2));
                 ar.append("\n----------------------------------------------------");
                 }
             if (Tipo==3){
                 if(T>0){
                     ar.append("\n---PROCEDIMIENTO(V/T)-------------------------------");
-                    ar.append("\n "+n2+" * "+T+"^"+expo2+" + "+n3+" * "+T+"^"+expo3);
+                    ar.append("\n "+fto(n2)+" * "+T+"^"+expo2+" + "+fto(n3)+" * "+T+"^"+expo3);
                     r=Math.pow(T, expo2);
                     r2=Math.pow(T, expo3);
-                    ar.append("\n "+n2+" * "+ r +" + "+n3+" * "+r2);
+                    ar.append("\n "+fto(n2)+" * "+ fto(r) +" + "+fto(n3)+" * "+fto(r2));
                     N=n2*r;
                     N2=n3*r2;
-                    ar.append("\n "+N+" + "+N2);
+                    ar.append("\n "+fto(N)+" + "+fto(N2));
                     ar.append("\n----------------------------------------------------");
                     ar.append("\n--------AceleracionMedia------------------------------");
-                    ar.append("\n (("+n2+" * "+" ("+T+")^ "+expo2+" + "+n3+" * "+" ("+T+")^ "+expo3+")"+" - "+n2+" * "+" ("+0+")^ "+expo2+" + "+n3+" * "+" ("+0+")^ "+expo3+")/ "+T+" - "+0);
-                    ar.append("\n (("+N+" + "+N2+")"+")/ "+T+" - "+0);
+                    ar.append("\n (("+fto(n2)+" * "+" ("+T+")^ "+expo2+" + "+fto(n3)+" * "+" ("+T+")^ "+expo3+")"+" - "+fto(n2)+" * "+" ("+0+")^ "+expo2+" + "+fto(n3)+" * "+" ("+0+")^ "+expo3+")/ "+T+" - "+0);
+                    ar.append("\n (("+fto(N)+" + "+fto(N2)+")"+")/ "+T+" - "+0);
                     r=N+N2;
-                    ar.append("\n ("+r+")"+" / "+T);
+                    ar.append("\n ("+fto(r)+")"+" / "+T);
                     ar.append("\n----------------------------------------------------");
                     }else{
                     ar.append("\n---PROCEDIMIENTO(Integral)---------------------------------");
@@ -375,8 +372,8 @@ public class FormulaGeneral {
                     N2=n3/NE2;
                     r2=N2/ee;
                     
-                    ar.append("\n ("+N+" / ("+NE+" + 1) X^("+NE+" + "+1+") + ("+N2+" / ("+NE2+" + 1) X^("+NE2+" + "+1+")");
-                    ar.append("\n "+r+" X^"+e+" + "+r2+" X^"+ee);
+                    ar.append("\n ("+fto(N)+" / ("+fto(NE)+" + 1) X^("+fto(NE)+" + "+1+") + ("+fto(N2)+" / ("+fto(NE2)+" + 1) X^("+fto(NE2)+" + "+1+")");
+                    ar.append("\n "+fto(r)+" X^"+fto(e)+" + "+fto(r2)+" X^"+fto(ee));
                     ar.append("\n----------------------------------------------------");
                     }
                 }
@@ -393,13 +390,13 @@ public class FormulaGeneral {
             if(Tipo==1 || Tipo==2){//errores esta bien pero a la vez mal haha
                 if(T>0){
                 ar.append("\n---PROCEDIMIENTO(A/T)-------------------------------");
-                ar.append("\n "+n2+" * "+T+"^"+expo2+" + "+n3+" * "+T+"^"+expo3);
+                ar.append("\n "+fto(n2)+" * "+T+"^"+expo2+" + "+fto(n3)+" * "+T+"^"+expo3);
                 r=Math.pow(T, expo2);
                 r2=Math.pow(T, expo3);
-                ar.append("\n "+n2+" * "+ r +" + "+n3+" * "+r2);
+                ar.append("\n "+fto(n2)+" * "+ fto(r) +" + "+fto(n3)+" * "+fto(r2));
                 N=n2*r;
                 N2=n3*r2;
-                ar.append("\n "+N+" + "+N2);
+                ar.append("\n "+fto(N)+" + "+fto(N2));
                 ar.append("\n----------------------------------------------------");
                 }
 
@@ -410,18 +407,18 @@ public class FormulaGeneral {
                 N=n2/NE;
                 NE2=expo3+1;                
                 N2=n3/NE2;
-                ar.append("\n ("+n2+" / "+expo2+" + 1) X^("+expo2+" - "+1+") + ("+n3+" / "+expo3+" + 1) X^("+expo3+" - "+1+")");
-                ar.append("\n "+N+" X^"+NE+" + "+N2+" X^"+NE2);
+                ar.append("\n ("+fto(n2)+" / "+expo2+" + 1) X^("+expo2+" - "+1+") + ("+fto(n3)+" / "+expo3+" + 1) X^("+expo3+" - "+1+")");
+                ar.append("\n "+fto(N)+" X^"+fto(NE)+" + "+fto(N2)+" X^"+fto(NE2));
                 ar.append("\n----------------------------------------------------");
                 if(T>0){
                 ar.append("\n---PROCEDIMIENTO(A/T)-------------------------------");
-                ar.append("\n "+n2+" * "+T+"^"+expo2+" + "+n3+" * "+T+"^"+expo3);
+                ar.append("\n "+fto(n2)+" * "+T+"^"+expo2+" + "+fto(n3)+" * "+T+"^"+expo3);
                 r=Math.pow(T, expo2);
                 r2=Math.pow(T, expo3);
-                ar.append("\n "+n2+" * "+ r +" + "+n3+" * "+r2);
+                ar.append("\n "+fto(n2)+" * "+ fto(r) +" + "+fto(n3)+" * "+fto(r2));
                 N=n2*r;
                 N2=n3*r2;
-                ar.append("\n "+N+" + "+N2);
+                ar.append("\n "+fto(N)+" + "+fto(N2));
                 ar.append("\n----------------------------------------------------");
                     }
                 }
