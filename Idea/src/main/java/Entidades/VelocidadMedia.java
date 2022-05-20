@@ -14,6 +14,10 @@ public class VelocidadMedia implements Constantes{
         this.TF = TF;
     }
     
+        public double calcVelMedia() {
+        return (PF-PI) / (TF-TI);
+    }
+    
     public double getPF() {
         return PF;
     }
@@ -37,11 +41,5 @@ public class VelocidadMedia implements Constantes{
     public void setTF(double TF) {
         this.TF = TF;
     }
-    
-    public double calcVelMedia() {
-        return (PF-PI) / (TF-TI);
-    }
-    
-    
     
 }

@@ -10,8 +10,11 @@ public class AceleracionMedia implements Constantes {
 
     public AceleracionMedia(double VF, double TF) {
         this.VF = VF;
-
         this.TF = TF;
+    }
+    
+        public double calcAcelMedia() {
+        return (VF-VI) / (TF - TI);
     }
 
     public double getTF() {
@@ -30,7 +33,4 @@ public class AceleracionMedia implements Constantes {
         this.VF = VF;
     }
     
-    public double calcAcelMedia() {
-        return (VF-VI) / (TF - TI);
-    }
 }

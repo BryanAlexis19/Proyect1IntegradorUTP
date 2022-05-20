@@ -10,6 +10,10 @@ public class Desplazamiento  {
         this.PI = pi;
         this.PF = pf;
     }
+    
+        public double calcDesp(){
+        return PF-PI;
+    }
 
     public double getPF() {
         return PF;
@@ -27,8 +31,5 @@ public class Desplazamiento  {
         this.PI = PI;
     }
     
-    public double calcDesp(){
-        return PF-PI;
-    }
     
 }
